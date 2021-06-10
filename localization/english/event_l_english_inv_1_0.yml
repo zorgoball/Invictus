@@ -31,3 +31,18 @@
  regency_events.3.t:0 "Shouldering the Weight of Governance"
  regency_events.3.desc:0 "The regent's death has plunged the country into mourning and the government wobbles on shaky ground. Mindful of duty and the fragility of the state, a noble steps forward as the new regent for as long as the crown requires."
  regency_events.3.a:0 "Our nobles are the pillars of our kingdom."
+
+
+#### cultural events - Diskianterezh ###
+
+cultural_annexed_revolt.1.t:0 "A proud people resist us"
+cultural_annexed_revolt.1.desc:0 "The recent conquest of the [unhappy_annexed_culture.GetCulture.GetName] lands has brought us much wealth and vast lands, but the proud people who ruled there are resentful of their relegation to the rank of mere constituents and the resulting loss of status. This sense of injustice led to much unrest in the newly conquered territories. \nShowing understanding will ease tensions, but shouldn't we show that our dominance is unquestionable? "
+cultural_annexed_revolt.1.a:0 "They will eventually get over it"
+cultural_annexed_revolt.1.b:0 "Them? A great people? Hilarious!"
+cultural_annexed_revolt.1.c:0 "Let us make wide concessions in order to calm the plebs"
+cultural_annexed_revolt.1.d:0 "Perhaps a nice speech and a compromise will satisfy everyone?"
+cultural_annexed_revolt.1.d.tt1:0 "This option is available because of [unhappy_prov_gov.GetName]'s finesse"
+cultural_annexed_revolt.1.d.tt2:0 "This option is available because [unhappy_prov_gov.GetName] is prominent"
+cultural_annexed_revolt.1.d.tt3:0 "This option is available because [unhappy_prov_gov.GetName] is silver tongued"
+cultural_annexed_revolt.1.d.tt4:0 "This option is available because [unhappy_prov_gov.GetName] is wise"
+

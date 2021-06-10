@@ -1,0 +1,28 @@
+﻿##################################################################################################
+# Cultural events - Diskianterezh
+##################################################################################################
+
+annexed_culture_unhappy = {
+	culture_happiness_modifier = -0.05
+}
+despised_annexed_culture = {
+	culture_happiness_modifier = -0.1
+}
+protected_customs = {
+
+	culture_citizen_output = -0.10
+	culture_nobles_output = -0.10
+	culture_freemen_output = -0.15
+	culture_slaves_output = -0.20
+	culture_tribesmen_output = -0.10
+
+}
+respected_annexed_culture = {
+	culture_happiness_modifier = 0.03
+	culture_citizen_output = -0.05
+	culture_nobles_output = -0.05
+	culture_freemen_output = -0.05
+}
+
+
+

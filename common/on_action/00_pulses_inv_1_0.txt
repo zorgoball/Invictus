@@ -15,3 +15,10 @@ cappadocia_gamestart_pulse = {
 		flavor_cap.1
 	}
 }
+
+cultural_newly_annexed = {
+	random_events = {
+		40 = 0
+		10 = cultural_annexed_revolt.1
+	}
+}

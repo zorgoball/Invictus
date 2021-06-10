@@ -133,3 +133,14 @@
  commander_king_desc:0 "The King did not appoint a Regent to do anything other than fight!"
  regency_government:0 "Regency Government"
  regency_government_desc:0 "Government by a Regent"
+
+#### cultural events - Diskianterezh ###
+
+annexed_culture_unhappy:0 "Independence persists"
+desc_annexed_culture_unhappy:0 "This people still dreams with revanchism of the blessed time of its independence"
+despised_annexed_culture:0 "Independence mocked"
+desc_despised_annexed_culture:0 "As the people demanded greater recognition of their customs, the government laughed in their faces"
+protected_customs:0 "Protected customs"
+desc_protected_customs:0 "The inhabitants of this territory benefit from great concessions on the conservation of their ancestral customs"
+respected_annexed_culture:0 "Autonomy granted"
+desc_respected_annexed_culture:0 "By dint of difficult negotiations and effective diplomacy, the pro-independence sentiment of this people has been curbed"

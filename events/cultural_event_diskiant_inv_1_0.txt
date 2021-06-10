@@ -1,0 +1,308 @@
+﻿namespace = cultural_annexed_revolt
+
+cultural_annexed_revolt.1 = {
+    type = country_event
+    title = "cultural_annexed_revolt.1.t"
+    desc = "cultural_annexed_revolt.1.desc" 
+    picture = proscription
+
+
+    goto_location = scope:random_province_unhappy_cult
+ 
+    left_portrait = scope:unhappy_prov_gov 
+
+    weight_multiplier = { 
+		modifier = {
+			factor = 2
+            any_country_culture = {
+                is_integrated = no
+                OR = {
+                    has_country_culture_modifier = annexed_my_home_culture
+                    has_country_culture_modifier = annexed_my_home_culture_lenient
+                }
+                NOR = {
+                    has_country_culture_modifier = annexed_culture_unhappy
+                    has_country_culture_modifier = despised_annexed_culture
+                    has_country_culture_modifier = protected_customs
+                    has_country_culture_modifier = respected_annexed_culture
+                }
+                country_culture_pop_count >= 50
+            }
+		} 
+		modifier = {
+			factor = 2
+            any_country_culture = {
+                is_integrated = no
+                OR = {
+                    has_country_culture_modifier = annexed_my_home_culture
+                    has_country_culture_modifier = annexed_my_home_culture_lenient
+                }
+                NOR = {
+                    has_country_culture_modifier = annexed_culture_unhappy
+                    has_country_culture_modifier = despised_annexed_culture
+                    has_country_culture_modifier = protected_customs
+                    has_country_culture_modifier = respected_annexed_culture
+                }
+                country_culture_pop_count >= 100
+            }
+		} 
+		modifier = {
+			factor = 2
+            any_country_culture = {
+                is_integrated = no
+                OR = {
+                    has_country_culture_modifier = annexed_my_home_culture
+                    has_country_culture_modifier = annexed_my_home_culture_lenient
+                }
+                NOR = {
+                    has_country_culture_modifier = annexed_culture_unhappy
+                    has_country_culture_modifier = despised_annexed_culture
+                    has_country_culture_modifier = protected_customs
+                    has_country_culture_modifier = respected_annexed_culture
+                }
+                country_culture_pop_count >= 200
+            }
+		} 
+		modifier = {
+			factor = 3
+            any_country_culture = {
+                is_integrated = no
+                OR = {
+                    has_country_culture_modifier = annexed_my_home_culture
+                    has_country_culture_modifier = annexed_my_home_culture_lenient
+                }
+                NOR = {
+                    has_country_culture_modifier = annexed_culture_unhappy
+                    has_country_culture_modifier = despised_annexed_culture
+                    has_country_culture_modifier = protected_customs
+                    has_country_culture_modifier = respected_annexed_culture
+                }
+                country_culture_pop_count >= 500
+            }
+		}
+        
+    }
+    trigger = {
+		any_country_culture = {
+            is_integrated = no
+            OR = {
+                has_country_culture_modifier = annexed_my_home_culture
+                has_country_culture_modifier = annexed_my_home_culture_lenient
+            }
+            NOR = {
+                has_country_culture_modifier = annexed_culture_unhappy
+                has_country_culture_modifier = despised_annexed_culture
+                has_country_culture_modifier = protected_customs
+                has_country_culture_modifier = respected_annexed_culture
+            }
+		}
+    }
+
+    immediate = { 
+        random_country_culture = {
+            limit = {
+                is_integrated = no
+                OR = {
+                    has_country_culture_modifier = annexed_my_home_culture
+                    has_country_culture_modifier = annexed_my_home_culture_lenient
+                }
+                NOR = {
+                    has_country_culture_modifier = annexed_culture_unhappy
+                    has_variable = unhappy_annexed_culture_var
+                }
+            }
+            weight = { 
+                modifier = {
+                    factor = country_culture_pop_count
+                }
+            }
+            save_scope_as = unhappy_annexed_culture #saving the targeted culture
+            set_variable = {
+                name = unhappy_annexed_culture_var
+                days = 3650
+            }
+            
+        }    
+
+    }
+
+    option = { 
+        name = cultural_annexed_revolt.1.a
+        scope:unhappy_annexed_culture = {
+            add_country_culture_modifier = {
+                name = "annexed_culture_unhappy"
+				duration = 3650
+            }
+        }
+    }
+
+    option = { 
+        name = cultural_annexed_revolt.1.b
+        current_ruler = {
+            add_popularity = popularity_medium
+            
+        }
+        if = {
+            limit = { is_monarchy = yes }
+            current_ruler = { add_legitimacy = legitimacy_small}
+        }
+        else if = {
+            limit = {
+                is_republic = yes
+            }
+            if = {
+                limit = {
+                    has_party_type = optimates_party
+                }
+                add_party_approval = {
+                    party_type = optimates_party
+                    VALUE = party_approval_small_svalue
+                }
+            }
+            else = {
+                add_party_approval = {
+                    party_type = oligarchic_party
+                    VALUE = party_approval_small_svalue
+                }
+            }
+        }
+        if = {
+            limit = {
+                is_tribal = yes
+             }
+            add_centralization = 5
+        }
+        scope:unhappy_annexed_culture = {
+            add_country_culture_modifier = {
+                name = "despised_annexed_culture"
+				duration = 3650
+            }
+        }
+    }
+    option = {
+        name = cultural_annexed_revolt.1.c
+        current_ruler = {
+            add_popularity = subtract_popularity_medium
+        }
+        if = {
+            limit = {
+                is_republic = yes
+            }
+            if = {
+                limit = {
+                    has_party_type = populares_party
+                }
+                add_party_approval = {
+                    party_type = populares_party
+                    VALUE = party_approval_small_svalue
+                }
+            }
+            else = {
+                add_party_approval = {
+                    party_type = democratic_party
+                    VALUE = party_approval_small_svalue
+                }
+            }
+        }
+        else_if = {
+            limit = {
+                is_tribal = yes
+             }
+             add_centralization = -5
+        }
+        scope:unhappy_annexed_culture = {
+            add_country_culture_modifier = {
+                name = "protected_customs"
+				duration = 3650
+            }
+        }
+    }
+    option = {
+        name = cultural_annexed_revolt.1.d
+        trigger = {
+            any_governorships = {
+                governor_or_ruler = {
+                    NOT = { has_culture = scope:unhappy_annexed_culture.culture }
+                    OR = {
+                        finesse >= 10
+                        has_trait = prominent 
+                        has_trait = silver_tongued 
+                        has_trait = wise
+                    }
+                }
+                any_governorship_state = {
+                    any_state_province = {
+                        dominant_province_culture = scope:unhappy_annexed_culture.culture	
+                    }
+                }
+            }
+        }
+        
+        random_governorships = {
+            limit = {
+                
+                governor_or_ruler = {
+                    NOT = { has_culture = scope:unhappy_annexed_culture.culture }
+                    OR = {
+                        finesse >= 10
+                        has_trait = prominent 
+                        has_trait = silver_tongued 
+                        has_trait = wise
+                    }
+                }
+                any_governorship_state = {
+                    any_state_province = {
+                        dominant_province_culture = scope:unhappy_annexed_culture.culture	
+                    }
+                }
+            }
+            governor_or_ruler = { 
+                save_scope_as = unhappy_prov_gov
+            }
+
+        }
+        if = {
+            limit = { 
+                scope:unhappy_prov_gov = {
+                    finesse >= 10
+                }
+            }
+            custom_tooltip = cultural_annexed_revolt.1.d.tt1
+        }
+        else_if = {
+            limit = { 
+                scope:unhappy_prov_gov = {
+                    has_trait = prominent 
+                }
+            }
+            custom_tooltip = cultural_annexed_revolt.1.d.tt2
+        }
+        else_if = {
+            limit = { 
+                scope:unhappy_prov_gov = {
+                    has_trait = silver_tongued
+                }
+            }
+            custom_tooltip = cultural_annexed_revolt.1.d.tt3
+        }
+        else_if = {
+            limit = { 
+                scope:unhappy_prov_gov = {
+                    has_trait = wise
+                }
+            }
+            custom_tooltip = cultural_annexed_revolt.1.d.tt4
+        }
+        highlight = yes
+        scope:unhappy_annexed_culture = {
+            add_country_culture_modifier = {
+                name = "respected_annexed_culture"
+				duration = 1825
+            }
+        }
+
+    }
+    after = { 
+
+    }
+}
