@@ -13,14 +13,15 @@ roman_heritage = {
 	}
 }
 
+
 spartan_heritage = {
 	modifier = {
 		#good
-		levy_size_multiplier = 0.025
+		land_morale_modifier = 0.05
 		discipline = 0.05
 		
 		#bad
-		global_slaves_output = -0.05
+		global_slaves_happyness = -0.10
 	}
 	
 	trigger = {
@@ -134,20 +135,20 @@ judea_heritage = {
 	}
 }
 
-tartessian_heritage = {
-	modifier = {
-		#good
-		global_export_commerce_modifier = 0.1
-		civic_tech_investment = 0.1
-		
-		#bad
-		build_cost = 0.05
-	}
-	
-	trigger = {
-		tag = TAT
-	}
-}
+#tartessian_heritage = {
+#	modifier = {
+#		#good
+#		global_export_commerce_modifier = 0.1
+#		civic_tech_investment = 0.1
+#		
+#		#bad
+#		build_cost = 0.05
+#	}
+#	
+#	trigger = {
+#		primary_culture = turdetanian
+#	}
+#}
 
 byblos_heritage = {
 	modifier = {
@@ -295,11 +296,7 @@ arvernia_heritage = {
 	}
 	
 	trigger = {
-		OR = {
-			tag = AVN
-			tag = LMV
-			tag = SNT
-		}
+		tag = AVN
 	}
 }
 
@@ -1185,10 +1182,7 @@ aeduian_heritage = {
 	}
 	
 	trigger = {
-		OR = {
-			tag = AED
-			tag = BGT
-		}
+		tag = AED
 	}
 }
 
