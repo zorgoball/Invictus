@@ -12,7 +12,6 @@ force_march = {
 	allow = {
 		is_army = yes
 		in_combat = no
-		morale_percentage >= 0.2
 		OR = {
 			is_moving = no
 			unit_owner = { is_ai = yes } #AI doesn't know how to stop for abilities.
