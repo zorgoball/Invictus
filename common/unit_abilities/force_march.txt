@@ -63,7 +63,7 @@ force_march = {
 				}
 				every_sub_unit = {
 					limit = {
-						subunit_morale_percentage > 0.1
+						subunit_morale_percentage >= 0.11
 					}
 					add_subunit_morale = -0.01
 				}
@@ -74,6 +74,18 @@ force_march = {
 						subunit_morale_percentage >= 0.13
 					}
 					add_subunit_morale = -0.03
+				}
+				every_sub_unit = {
+					limit = {
+						subunit_morale_percentage = 0.12
+					}
+					add_subunit_morale = -0.02
+				}
+				every_sub_unit = {
+					limit = {
+						subunit_morale_percentage = 0.11
+					}
+					add_subunit_morale = -0.01
 				}
 			}
 			if = {
