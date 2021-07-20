@@ -1,4 +1,4 @@
-brisk_march = {
+force_march = {
 
 	duration = -1
 	enable = yes
@@ -12,6 +12,7 @@ brisk_march = {
 	allow = {
 		is_army = yes
 		in_combat = no
+		morale_percentage >= 0.2
 		OR = {
 			is_moving = no
 			unit_owner = { is_ai = yes } #AI doesn't know how to stop for abilities.
@@ -27,16 +28,54 @@ brisk_march = {
 		}
 	}
 	modifier = {
-		land_morale_recovery = -1.05
-		army_weight_modifier = 0.2
-		army_movement_speed = 0.2
-	}
-	on_start_effect = {
-		# TODO add in the loss of morale
+		land_morale_recovery = -1.0
+		army_weight_modifier = 0.5
+		army_movement_speed = 0.5
 	}
 	
+	start_effect = {
+		custom_tooltip = force_march.tt
+		if = {
+			limit = {
+				unit_owner = {
+					invention = army_movement_speed_inv
+				}
+			}
+			custom_tooltip = force_march.tt_2
+		}
+		else = {
+			custom_tooltip = force_march.tt_3
+		}
+		hidden_effect = {
+			every_sub_unit = {
+				add_subunit_morale = -0.05
+			}
+		}
+	}
+
 	on_entering_province = {
-		hidden_effect = {	
+		hidden_effect = {
+			if = {
+				limit = {
+					unit_owner = {
+						invention = army_movement_speed_inv
+					}
+				}
+				every_sub_unit = {
+					limit = {
+						subunit_morale_percentage > 0.1
+					}
+					add_subunit_morale = -0.01
+				}
+			}
+			else = {
+				every_sub_unit = {
+					limit = {
+						subunit_morale_percentage >= 0.13
+					}
+					add_subunit_morale = -0.03
+				}
+			}
 			if = {
 				random_list = {
 					90 = {}

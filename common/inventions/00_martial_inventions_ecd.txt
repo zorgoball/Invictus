@@ -197,11 +197,11 @@
 
 	army_movement_speed_inv = { 
 		modifier = { 
-			army_movement_speed = 0.05 
+			army_movement_speed = 0.05
 			
 		}
 		on_activate = {
-			custom_tooltip = "enables_forced_march"
+			custom_tooltip = "improves_force_march"
 		}
 		keystone = yes
 		requires_or = { military_tech_investment_inv_2 global_supply_limit_modifier_inv_4 }
