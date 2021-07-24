@@ -122,7 +122,8 @@ cultural_annexed_revolt.1 = {
                 days = 3650
             }
             
-        }    
+        }   
+        
 
     }
 

@@ -7,6 +7,8 @@ yearly_country_pulse = {
 		tech_spread_pulse
 		delay = { days = { 1 364 } }
 		cultural_newly_annexed
+		delay = { days = { 1 10 }}
+		cultural_annexed_test
 	}
 
 	events = {

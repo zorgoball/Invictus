@@ -57,3 +57,8 @@ cultural_annexed_revolt.1.d.tt2:0 "This option is available because [unhappy_pro
 cultural_annexed_revolt.1.d.tt3:0 "This option is available because [unhappy_prov_gov.GetName] is silver tongued"
 cultural_annexed_revolt.1.d.tt4:0 "This option is available because [unhappy_prov_gov.GetName] is wise"
 
+
+cultural_annexed_test.t:0 "A proud people resist us"
+cultural_annexed_test.desc:0 " [tested_culture.GetCulture.GetName] EAT OUR COOKIES "
+omg_test_event.a:0 "They will eventually get over it"
+

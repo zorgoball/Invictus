@@ -22,6 +22,13 @@ cultural_newly_annexed = {
 		10 = cultural_annexed_revolt.1
 	}
 }
+
+cultural_annexed_test = {
+	events = {
+		cultural_annexed_test.1
+	}
+}
+
 fix_succession_on_action = {
 	trigger = {
 		is_monarchy = yes
