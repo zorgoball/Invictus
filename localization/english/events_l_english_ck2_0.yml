@@ -46,19 +46,13 @@
 
 #### cultural events - Diskianterezh ###
 
-cultural_annexed_revolt.1.t:0 "A proud people resist us"
-cultural_annexed_revolt.1.desc:0 "The recent conquest of the [unhappy_annexed_culture.GetCulture.GetName] lands has brought us much wealth and vast lands, but the proud people who ruled there are resentful of their relegation to the rank of mere constituents and the resulting loss of status. This sense of injustice led to much unrest in the newly conquered territories. \nShowing understanding will ease tensions, but shouldn't we show that our dominance is unquestionable? "
-cultural_annexed_revolt.1.a:0 "They will eventually get over it"
-cultural_annexed_revolt.1.b:0 "Them? A great people? Hilarious!"
-cultural_annexed_revolt.1.c:0 "Let us make wide concessions in order to calm the plebs"
-cultural_annexed_revolt.1.d:0 "Perhaps a nice speech and a compromise will satisfy everyone?"
-cultural_annexed_revolt.1.d.tt1:0 "This option is available because of [unhappy_prov_gov.GetName]'s finesse"
-cultural_annexed_revolt.1.d.tt2:0 "This option is available because [unhappy_prov_gov.GetName] is prominent"
-cultural_annexed_revolt.1.d.tt3:0 "This option is available because [unhappy_prov_gov.GetName] is silver tongued"
-cultural_annexed_revolt.1.d.tt4:0 "This option is available because [unhappy_prov_gov.GetName] is wise"
-
-
-cultural_annexed_test.t:0 "A proud people resist us"
-cultural_annexed_test.desc:0 " [tested_culture.GetCulture.GetName] EAT OUR COOKIES "
-omg_test_event.a:0 "They will eventually get over it"
-
+cultural_annexed_revolt.2.t:0 "A proud people resist us"
+cultural_annexed_revolt.2.desc:0 "The recent conquest of the [target_annexed_culture.GetCulture.GetName] lands has brought us much wealth and vast lands, but the proud people who ruled there are resentful of their relegation to the rank of mere constituents and the resulting loss of status. This sense of injustice led to much unrest in the newly conquered territories. \nShowing understanding will ease tensions, but shouldn't we show that our dominance is unquestionable? "
+cultural_annexed_revolt.2.a:0 "They will eventually get over it"
+cultural_annexed_revolt.2.b:0 "Them? A great people? Hilarious!"
+cultural_annexed_revolt.2.c:0 "Let us make wide concessions in order to calm the plebs"
+cultural_annexed_revolt.2.d:0 "Perhaps a nice speech and a compromise will satisfy everyone?"
+cultural_annexed_revolt.2.d.tt1:0 "This option is available because of [unhappy_prov_gov.GetName]'s finesse"
+cultural_annexed_revolt.2.d.tt2:0 "This option is available because [unhappy_prov_gov.GetName] is prominent"
+cultural_annexed_revolt.2.d.tt3:0 "This option is available because [unhappy_prov_gov.GetName] is silver tongued"
+cultural_annexed_revolt.2.d.tt4:0 "This option is available because [unhappy_prov_gov.GetName] is wise"

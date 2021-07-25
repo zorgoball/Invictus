@@ -1,89 +1,15 @@
 ﻿namespace = cultural_annexed_revolt
 
-cultural_annexed_revolt.1 = {
+cultural_annexed_revolt.2 = {
     type = country_event
-    title = "cultural_annexed_revolt.1.t"
-    desc = "cultural_annexed_revolt.1.desc" 
+    title = "cultural_annexed_revolt.2.t"
+    desc = "cultural_annexed_revolt.2.desc" 
     picture = proscription
-
-
     goto_location = scope:random_province_unhappy_cult
- 
     left_portrait = scope:unhappy_prov_gov 
 
-    weight_multiplier = { 
-		modifier = {
-			factor = 2
-            any_country_culture = {
-                is_integrated = no
-                OR = {
-                    has_country_culture_modifier = annexed_my_home_culture
-                    has_country_culture_modifier = annexed_my_home_culture_lenient
-                }
-                NOR = {
-                    has_country_culture_modifier = annexed_culture_unhappy
-                    has_country_culture_modifier = despised_annexed_culture
-                    has_country_culture_modifier = protected_customs
-                    has_country_culture_modifier = respected_annexed_culture
-                }
-                country_culture_pop_count >= 50
-            }
-		} 
-		modifier = {
-			factor = 2
-            any_country_culture = {
-                is_integrated = no
-                OR = {
-                    has_country_culture_modifier = annexed_my_home_culture
-                    has_country_culture_modifier = annexed_my_home_culture_lenient
-                }
-                NOR = {
-                    has_country_culture_modifier = annexed_culture_unhappy
-                    has_country_culture_modifier = despised_annexed_culture
-                    has_country_culture_modifier = protected_customs
-                    has_country_culture_modifier = respected_annexed_culture
-                }
-                country_culture_pop_count >= 100
-            }
-		} 
-		modifier = {
-			factor = 2
-            any_country_culture = {
-                is_integrated = no
-                OR = {
-                    has_country_culture_modifier = annexed_my_home_culture
-                    has_country_culture_modifier = annexed_my_home_culture_lenient
-                }
-                NOR = {
-                    has_country_culture_modifier = annexed_culture_unhappy
-                    has_country_culture_modifier = despised_annexed_culture
-                    has_country_culture_modifier = protected_customs
-                    has_country_culture_modifier = respected_annexed_culture
-                }
-                country_culture_pop_count >= 200
-            }
-		} 
-		modifier = {
-			factor = 3
-            any_country_culture = {
-                is_integrated = no
-                OR = {
-                    has_country_culture_modifier = annexed_my_home_culture
-                    has_country_culture_modifier = annexed_my_home_culture_lenient
-                }
-                NOR = {
-                    has_country_culture_modifier = annexed_culture_unhappy
-                    has_country_culture_modifier = despised_annexed_culture
-                    has_country_culture_modifier = protected_customs
-                    has_country_culture_modifier = respected_annexed_culture
-                }
-                country_culture_pop_count >= 500
-            }
-		}
-        
-    }
     trigger = {
-		any_country_culture = {
+		scope:target_annexed_culture = {
             is_integrated = no
             OR = {
                 has_country_culture_modifier = annexed_my_home_culture
@@ -98,38 +24,101 @@ cultural_annexed_revolt.1 = {
 		}
     }
 
-    immediate = { 
-        random_country_culture = {
-            limit = {
-                is_integrated = no
-                OR = {
-                    has_country_culture_modifier = annexed_my_home_culture
-                    has_country_culture_modifier = annexed_my_home_culture_lenient
+    immediate = {
+        if = {
+            limit = { 
+                any_governorships = {
+                    governor_or_ruler = {
+                        NOT = { has_culture = scope:target_annexed_culture.culture }
+                        OR = {
+                            finesse >= 10
+                            has_trait = prominent 
+                            has_trait = silver_tongued 
+                            has_trait = wise
+                        }
+                    }
+                    any_governorship_state = {
+                        any_state_province = {
+                            dominant_province_culture = scope:target_annexed_culture.culture	
+                        }
+                    }
                 }
-                NOR = {
-                    has_country_culture_modifier = annexed_culture_unhappy
-                    has_variable = unhappy_annexed_culture_var
-                }
-            }
-            weight = { 
-                modifier = {
-                    factor = country_culture_pop_count
-                }
-            }
-            save_scope_as = unhappy_annexed_culture #saving the targeted culture
-            set_variable = {
-                name = unhappy_annexed_culture_var
-                days = 3650
             }
             
-        }   
-        
+            random_governorships = {
+                limit = {
+                
+                    governor_or_ruler = {
+                        NOT = { has_culture = scope:target_annexed_culture.culture }
+                        OR = {
+                            finesse >= 10
+                            has_trait = prominent 
+                            has_trait = silver_tongued 
+                            has_trait = wise
+                        }
+                    }
+                    any_governorship_state = {
+                        any_state_province = {
+                            dominant_province_culture = scope:target_annexed_culture.culture	
+                        }
+                    }
+                }
+                governor_or_ruler = { 
+                    save_scope_as = unhappy_prov_gov
+                    random_governor_state = {
+                        limit = {
+                            any_state_province = {
+                                dominant_province_culture = scope:target_annexed_culture.culture	
+                            }
+                        }
+                        random_state_province = {
+                            limit = {
+                                dominant_province_culture = scope:target_annexed_culture.culture
+                            }
+                            weight = {
+                                modifier = {
+                                    add = total_population
+                                }
+                            }
+                            save_scope_as = random_province_unhappy_cult
+                        }
+                    }
+                }
 
+            }
+        }
+        else = {
+            random_country_state = {
+                limit = {
+                    any_state_province = {
+                        dominant_province_culture = scope:target_annexed_culture.culture	
+                    }
+                
+                }
+                random_state_province = {
+                    limit = {
+                        dominant_province_culture = scope:target_annexed_culture.culture
+                    }
+                    weight = {
+                        modifier = {
+                            add = total_population
+                        }
+                    }
+                    save_scope_as = random_province_unhappy_cult
+                }
+                governor_or_ruler = {
+                    save_scope_as = unhappy_prov_gov
+                }
+            
+            }
+
+        }
+           
     }
 
     option = { 
-        name = cultural_annexed_revolt.1.a
-        scope:unhappy_annexed_culture = {
+        name = cultural_annexed_revolt.2.a
+        scope:target_annexed_culture = {
             add_country_culture_modifier = {
                 name = "annexed_culture_unhappy"
 				duration = 3650
@@ -138,14 +127,14 @@ cultural_annexed_revolt.1 = {
     }
 
     option = { 
-        name = cultural_annexed_revolt.1.b
+        name = cultural_annexed_revolt.2.b
         current_ruler = {
             add_popularity = popularity_medium
             
         }
         if = {
             limit = { is_monarchy = yes }
-            current_ruler = { add_legitimacy = legitimacy_small}
+            current_ruler = { add_legitimacy = legitimacy_small }
         }
         else if = {
             limit = {
@@ -173,7 +162,7 @@ cultural_annexed_revolt.1 = {
              }
             add_centralization = 5
         }
-        scope:unhappy_annexed_culture = {
+        scope:target_annexed_culture = {
             add_country_culture_modifier = {
                 name = "despised_annexed_culture"
 				duration = 3650
@@ -181,7 +170,7 @@ cultural_annexed_revolt.1 = {
         }
     }
     option = {
-        name = cultural_annexed_revolt.1.c
+        name = cultural_annexed_revolt.2.c
         current_ruler = {
             add_popularity = subtract_popularity_medium
         }
@@ -211,7 +200,7 @@ cultural_annexed_revolt.1 = {
              }
              add_centralization = -5
         }
-        scope:unhappy_annexed_culture = {
+        scope:target_annexed_culture = {
             add_country_culture_modifier = {
                 name = "protected_customs"
 				duration = 3650
@@ -219,11 +208,11 @@ cultural_annexed_revolt.1 = {
         }
     }
     option = {
-        name = cultural_annexed_revolt.1.d
+        name = cultural_annexed_revolt.2.d
         trigger = {
             any_governorships = {
                 governor_or_ruler = {
-                    NOT = { has_culture = scope:unhappy_annexed_culture.culture }
+                    NOT = { has_culture = scope:target_annexed_culture.culture }
                     OR = {
                         finesse >= 10
                         has_trait = prominent 
@@ -233,42 +222,19 @@ cultural_annexed_revolt.1 = {
                 }
                 any_governorship_state = {
                     any_state_province = {
-                        dominant_province_culture = scope:unhappy_annexed_culture.culture	
+                        dominant_province_culture = scope:target_annexed_culture.culture	
                     }
                 }
             }
         }
         
-        random_governorships = {
-            limit = {
-                
-                governor_or_ruler = {
-                    NOT = { has_culture = scope:unhappy_annexed_culture.culture }
-                    OR = {
-                        finesse >= 10
-                        has_trait = prominent 
-                        has_trait = silver_tongued 
-                        has_trait = wise
-                    }
-                }
-                any_governorship_state = {
-                    any_state_province = {
-                        dominant_province_culture = scope:unhappy_annexed_culture.culture	
-                    }
-                }
-            }
-            governor_or_ruler = { 
-                save_scope_as = unhappy_prov_gov
-            }
-
-        }
         if = {
             limit = { 
                 scope:unhappy_prov_gov = {
                     finesse >= 10
                 }
             }
-            custom_tooltip = cultural_annexed_revolt.1.d.tt1
+            custom_tooltip = cultural_annexed_revolt.2.d.tt1
         }
         else_if = {
             limit = { 
@@ -276,7 +242,7 @@ cultural_annexed_revolt.1 = {
                     has_trait = prominent 
                 }
             }
-            custom_tooltip = cultural_annexed_revolt.1.d.tt2
+            custom_tooltip = cultural_annexed_revolt.2.d.tt2
         }
         else_if = {
             limit = { 
@@ -284,7 +250,7 @@ cultural_annexed_revolt.1 = {
                     has_trait = silver_tongued
                 }
             }
-            custom_tooltip = cultural_annexed_revolt.1.d.tt3
+            custom_tooltip = cultural_annexed_revolt.2.d.tt3
         }
         else_if = {
             limit = { 
@@ -292,10 +258,10 @@ cultural_annexed_revolt.1 = {
                     has_trait = wise
                 }
             }
-            custom_tooltip = cultural_annexed_revolt.1.d.tt4
+            custom_tooltip = cultural_annexed_revolt.2.d.tt4
         }
         highlight = yes
-        scope:unhappy_annexed_culture = {
+        scope:target_annexed_culture = {
             add_country_culture_modifier = {
                 name = "respected_annexed_culture"
 				duration = 1825
@@ -305,5 +271,66 @@ cultural_annexed_revolt.1 = {
     }
     after = { 
 
+    }
+}
+cultural_annexed_revolt.1 = { #iterator through every culture to see if they're triggerable
+    
+    type = country_event
+    immediate = {
+        every_country_culture = {
+            limit = {
+                is_integrated = no
+                OR = {
+                    has_country_culture_modifier = annexed_my_home_culture
+                    has_country_culture_modifier = annexed_my_home_culture_lenient
+                }
+                NOR = {
+                    has_country_culture_modifier = annexed_culture_unhappy
+                    has_country_culture_modifier = despised_annexed_culture
+                    has_country_culture_modifier = protected_customs
+                    has_country_culture_modifier = respected_annexed_culture
+                }
+            }
+            save_scope_as = target_annexed_culture
+            random_list = {
+                1 = 0
+                10 = {
+                    modifier = {
+                        factor = 2
+                        scope:target_annexed_culture = {
+                            is_integrated = no
+                            country_culture_pop_count >= 50
+                        }
+                    } 
+                    modifier = {
+                        factor = 2
+                        scope:target_annexed_culture = {
+                            is_integrated = no
+                            country_culture_pop_count >= 100
+                        }
+                    } 
+                    modifier = {
+                        factor = 2
+                        scope:target_annexed_culture = {
+                            is_integrated = no
+                            country_culture_pop_count >= 200
+                        }
+                    } 
+                    modifier = {
+                        factor = 3
+                        scope:target_annexed_culture = {
+                            is_integrated = no
+                            country_culture_pop_count >= 500
+                        }
+                    }
+                    root = {
+                        trigger_event = { 
+                            id = cultural_annexed_revolt.2
+                            days = {1 364}
+                        }
+                    }
+                }
+            }
+        }
     }
 }
