@@ -47,6 +47,9 @@ force_march = {
 		}
 		hidden_effect = {
 			every_sub_unit = {
+				limit = {
+					morale_percentage >= 0.15
+				}
 				add_subunit_morale = -0.05
 			}
 		}
