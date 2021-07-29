@@ -48,7 +48,7 @@ force_march = {
 		hidden_effect = {
 			every_sub_unit = {
 				limit = {
-					morale_percentage >= 0.15
+					subunit_morale_percentage >= 0.15
 				}
 				add_subunit_morale = -0.05
 			}
@@ -72,22 +72,24 @@ force_march = {
 			}
 			else = {
 				every_sub_unit = {
-					limit = {
-						subunit_morale_percentage >= 0.13
+					if = {
+						limit = {
+							subunit_morale_percentage >= 0.13
+						}
+						add_subunit_morale = -0.03
 					}
-					add_subunit_morale = -0.03
-				}
-				every_sub_unit = {
-					limit = {
-						subunit_morale_percentage = 0.12
+					else_if = {
+						limit = {
+							subunit_morale_percentage >= 0.12
+						}
+						add_subunit_morale = -0.02
 					}
-					add_subunit_morale = -0.02
-				}
-				every_sub_unit = {
-					limit = {
-						subunit_morale_percentage = 0.11
+					else_if = {
+						limit = {
+							subunit_morale_percentage >= 0.11
+						}
+						add_subunit_morale = -0.01
 					}
-					add_subunit_morale = -0.01
 				}
 			}
 			if = {
