@@ -1,0 +1,132 @@
+﻿namespace = cultural_revolt_inv
+
+cultural_revolt_inv.1 = { #looking for cultures ready to revolt
+	type = country_event
+	immediate = {
+		every_country_culture = {
+			limit = {
+				is_integrated = no
+                NOT = {
+                    has_country_culture_modifier = revolting_culture
+                }
+			}
+			#save_scope_as = target_revolted_culture
+            save_scope_as = target_annexed_culture
+            
+            # root = {
+            #     trigger_event = { id = cultural_revolt_inv.2 }
+            # }
+            
+			random_list = {
+				300 = {}
+				1 = {
+					modifier = {
+                        factor = 5
+                        scope:target_revolted_culture = {
+                            country_culture_pop_count >= 40
+                        }
+                    }
+					modifier = {
+                        factor = 2
+                        scope:target_revolted_culture = {
+                            country_culture_pop_count >= 150
+                        }
+                    }
+					modifier = {
+                        factor = 2
+                        scope:target_revolted_culture = {
+                            country_culture_pop_count >= 500
+                        }
+                    }
+					modifier = {
+                        factor = 0.5
+                        scope:target_revolted_culture = {
+                            OR = {
+                                has_country_culture_modifier = administrators_cultmodifier
+                                has_culture_group = root.culture.culture_group
+                            }
+                            
+                        }
+                    }
+					modifier = {
+                        factor = 0.8
+                        scope:target_revolted_culture = {
+                            has_country_culture_modifier = inheritance_right
+                        }
+                    }
+					modifier = {
+                        factor = 0.8
+                        scope:target_revolted_culture = {
+                            OR = {
+                                has_country_culture_modifier = right_of_marriage
+                                has_country_culture_modifier = torture_protection
+                            }
+                            
+                        }
+                    }
+					modifier = {
+                        factor = 1.4
+                        scope:target_revolted_culture = {
+                            OR = {
+                                has_country_culture_modifier = colonia_founded
+                                has_country_culture_modifier = despised_annexed_culture
+                            }
+                            
+                        }
+                    }
+					modifier = {
+                        factor = 1.2
+                        scope:target_revolted_culture = {
+                            has_country_culture_modifier = slave_rights_imposed
+                            has_country_culture_modifier = rights_revoked
+                        }
+                    }
+					modifier = {
+                        factor = 1.2
+                        scope:target_revolted_culture = {
+                            stability < 40
+                        }
+                    }
+					modifier = {
+                        factor = 1.3
+                        scope:target_revolted_culture = {
+                            stability < 30
+                        }
+                    }
+					modifier = {
+                        factor = 1.4
+                        scope:target_revolted_culture = {
+                            stability < 20
+                        }
+                    }
+					modifier = {
+                        factor = 2
+                        scope:target_revolted_culture = {
+                            stability < 10
+                        }
+                    }
+                    root = {
+                        trigger_event = { 
+                            id = cultural_annexed_revolt.2
+                            days = {1 360}
+                        }
+                    }
+				}
+			}
+		}
+	}
+
+}
+
+cultural_revolt_inv.2 = {
+    type = country_event
+    title = "cultural_annexed_test.t"
+    desc = "cultural_annexed_revolt.2.desc" 
+    picture = proscription
+
+    
+    option = {
+        name = omg_test_event.a
+    }
+}
+

@@ -5,7 +5,6 @@ yearly_country_pulse = {
 	on_actions = {
 		delay = { days = { 1 364 } }
 		tech_spread_pulse
-		cultural_revolt_event
 	}
 
 	events = {
@@ -14,6 +13,7 @@ yearly_country_pulse = {
 		galatian_invasion.44
 		galatian_invasion.70
 		galatian_invasion.71
+		cultural_annexed_revolt.1
 	}
 
 	effect = {

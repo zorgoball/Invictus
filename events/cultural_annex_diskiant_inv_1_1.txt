@@ -106,9 +106,22 @@ cultural_annexed_revolt.2 = {
                     }
                     save_scope_as = random_province_unhappy_cult
                 }
-                governor_or_ruler = {
-                    save_scope_as = unhappy_prov_gov
+                if = {
+                    limit = {
+                        exists = governor_or_ruler
+                    }
+                    governor_or_ruler = {
+                        save_scope_as = unhappy_prov_gov
+                    }
                 }
+                else = {
+                    root = {
+                        current_ruler = {
+                            save_scope_as = unhappy_prov_gov
+                        }
+                    }
+                }
+                
             
             }
 
@@ -293,8 +306,8 @@ cultural_annexed_revolt.1 = { #iterator through every culture to see if they're 
             }
             save_scope_as = target_annexed_culture
             random_list = {
-                1 = 0
-                10 = {
+                50 = {}
+                5 = {
                     modifier = {
                         factor = 2
                         scope:target_annexed_culture = {
@@ -306,16 +319,9 @@ cultural_annexed_revolt.1 = { #iterator through every culture to see if they're 
                         factor = 2
                         scope:target_annexed_culture = {
                             is_integrated = no
-                            country_culture_pop_count >= 100
+                            country_culture_pop_count >= 150
                         }
-                    } 
-                    modifier = {
-                        factor = 2
-                        scope:target_annexed_culture = {
-                            is_integrated = no
-                            country_culture_pop_count >= 200
-                        }
-                    } 
+                    }
                     modifier = {
                         factor = 3
                         scope:target_annexed_culture = {
@@ -326,7 +332,7 @@ cultural_annexed_revolt.1 = { #iterator through every culture to see if they're 
                     root = {
                         trigger_event = { 
                             id = cultural_annexed_revolt.2
-                            days = {1 364}
+                            days = {1 360}
                         }
                     }
                 }

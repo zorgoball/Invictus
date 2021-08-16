@@ -16,11 +16,12 @@ cappadocia_gamestart_pulse = {
 	}
 }
 
-cultural_revolt_event = {
-	events = {
-		cultural_annexed_revolt.1
-	}
-}
+# cultural_revolt_event = {
+# 	events = {
+# 		cultural_annexed_revolt.1
+		
+# 	}
+# }
 
 cultural_annexed_test = {
 	events = {
