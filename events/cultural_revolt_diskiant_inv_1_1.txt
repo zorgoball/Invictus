@@ -10,16 +10,16 @@ cultural_revolt_inv.1 = { #looking for cultures ready to revolt
                     has_country_culture_modifier = revolting_culture
                 }
 			}
-			#save_scope_as = target_revolted_culture
-            save_scope_as = target_annexed_culture
+			save_scope_as = target_revolted_culture
+            #save_scope_as = target_annexed_culture
             
             # root = {
             #     trigger_event = { id = cultural_revolt_inv.2 }
             # }
             
 			random_list = {
-				300 = {}
-				1 = {
+				600 = {}
+				2 = {
 					modifier = {
                         factor = 5
                         scope:target_revolted_culture = {
@@ -120,9 +120,116 @@ cultural_revolt_inv.1 = { #looking for cultures ready to revolt
 
 cultural_revolt_inv.2 = {
     type = country_event
-    title = "cultural_annexed_test.t"
-    desc = "cultural_annexed_revolt.2.desc" 
+    title = "cultural_revolt_event.2.t"
+    desc = "cultural_revolt_event.2.desc" 
     picture = proscription
+    goto_location = scope:random_province_revolted_cult
+    left_portrait = scope:revolted_prov_gov 
+
+    immediate = {
+        if = {
+            limit = { 
+                any_governorships = {
+                    governor_or_ruler = {
+                        NOT = { has_culture = scope:target_revolted_culture.culture }
+                        OR = {
+                            finesse >= 10
+                            has_trait = prominent 
+                            has_trait = silver_tongued 
+                            has_trait = wise
+                        }
+                    }
+                    any_governorship_state = {
+                        any_state_province = {
+                            dominant_province_culture = scope:target_revolted_culture.culture	
+                        }
+                    }
+                }
+            }
+            
+            random_governorships = {
+                limit = {
+                
+                    governor_or_ruler = {
+                        NOT = { has_culture = scope:target_revolted_culture.culture }
+                        OR = {
+                            finesse >= 10
+                            has_trait = prominent 
+                            has_trait = silver_tongued 
+                            has_trait = wise
+                        }
+                    }
+                    any_governorship_state = {
+                        any_state_province = {
+                            dominant_province_culture = scope:target_revolted_culture.culture	
+                        }
+                    }
+                }
+                governor_or_ruler = { 
+                    save_scope_as = revolted_prov_gov
+                    random_governor_state = {
+                        limit = {
+                            any_state_province = {
+                                dominant_province_culture = scope:target_revolted_culture.culture	
+                            }
+                        }
+                        random_state_province = {
+                            limit = {
+                                dominant_province_culture = scope:target_revolted_culture.culture
+                            }
+                            weight = {
+                                modifier = {
+                                    add = total_population
+                                }
+                            }
+                            save_scope_as = random_province_revolted_cult
+                        }
+                    }
+                }
+
+            }
+        }
+        else = {
+            random_country_state = {
+                limit = {
+                    any_state_province = {
+                        dominant_province_culture = scope:target_annexed_culture.culture	
+                    }
+                
+                }
+                random_state_province = {
+                    limit = {
+                        dominant_province_culture = scope:target_annexed_culture.culture
+                    }
+                    weight = {
+                        modifier = {
+                            add = total_population
+                        }
+                    }
+                    save_scope_as = random_province_unhappy_cult
+                }
+                if = {
+                    limit = {
+                        exists = governor_or_ruler
+                    }
+                    governor_or_ruler = {
+                        save_scope_as = unhappy_prov_gov
+                    }
+                }
+                else = {
+                    root = {
+                        current_ruler = {
+                            save_scope_as = unhappy_prov_gov
+                        }
+                    }
+                }
+                
+            
+            }
+
+        }
+           
+    }
 
     
     option = {
