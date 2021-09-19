@@ -3,7 +3,18 @@
 cultural_annexed_revolt.2 = {
     type = country_event
     title = "cultural_annexed_revolt.2.t"
-    desc = "cultural_annexed_revolt.2.desc" 
+    
+	desc = {
+		desc = "cultural_annexed_revolt.2.desc" 
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:unhappy_prov_gov = { is_ruler = no }
+				}
+				desc = cultural_annexed_revolt.2.desc_1
+			}
+		}
+	}
     picture = proscription
     goto_location = scope:random_province_unhappy_cult
     left_portrait = scope:unhappy_prov_gov 
@@ -88,24 +99,14 @@ cultural_annexed_revolt.2 = {
             }
         }
         else = {
-            random_country_state = {
-                limit = {
-                    any_state_province = {
-                        dominant_province_culture = scope:target_annexed_culture.culture	
-                    }
-                
-                }
-                random_state_province = {
-                    limit = {
-                        dominant_province_culture = scope:target_annexed_culture.culture
-                    }
-                    weight = {
-                        modifier = {
-                            add = total_population
-                        }
-                    }
-                    save_scope_as = random_province_unhappy_cult
-                }
+            
+			ordered_owned_province = {
+				limit = { dominant_province_culture = scope:target_annexed_culture.culture }
+				max = 1
+				order_by = total_population
+				save_scope_as = random_province_unhappy_cult
+			}
+            scope:random_province_unhappy_cult = {
                 if = {
                     limit = {
                         exists = governor_or_ruler
@@ -184,6 +185,18 @@ cultural_annexed_revolt.2 = {
     }
     option = {
         name = cultural_annexed_revolt.2.c
+        trigger = {
+            scope:unhappy_prov_gov = {
+                OR = {
+                    has_culture = scope:target_annexed_culture.culture
+                    NOR = { 
+                        has_trait = harsh
+                        has_trait = rash
+                    }
+                }
+            }
+        }
+        
         current_ruler = {
             add_popularity = subtract_popularity_medium
         }
@@ -223,20 +236,17 @@ cultural_annexed_revolt.2 = {
     option = {
         name = cultural_annexed_revolt.2.d
         trigger = {
-            any_governorships = {
-                governor_or_ruler = {
-                    NOT = { has_culture = scope:target_annexed_culture.culture }
-                    OR = {
-                        finesse >= 10
-                        has_trait = prominent 
-                        has_trait = silver_tongued 
-                        has_trait = wise
-                    }
+            scope:unhappy_prov_gov = {
+                NOR = { 
+                    has_culture = scope:target_annexed_culture.culture
+                    has_trait = harsh
+                    has_trait = rash
                 }
-                any_governorship_state = {
-                    any_state_province = {
-                        dominant_province_culture = scope:target_annexed_culture.culture	
-                    }
+                OR = {
+                    finesse >= 10
+                    has_trait = prominent 
+                    has_trait = silver_tongued 
+                    has_trait = wise
                 }
             }
         }

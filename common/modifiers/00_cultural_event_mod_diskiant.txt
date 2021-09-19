@@ -23,6 +23,13 @@ respected_annexed_culture = {
 	culture_nobles_output = -0.05
 	culture_freemen_output = -0.05
 }
+dissatisfied_culture = {
+	culture_happiness_modifier = -0.05
+	cultural_integration_speed_modifier = -0.1
+}
+appeased_protests = {
+	culture_happiness_modifier = 0.05
+}
 
 
 

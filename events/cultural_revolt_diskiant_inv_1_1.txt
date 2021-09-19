@@ -11,15 +11,10 @@ cultural_revolt_inv.1 = { #looking for cultures ready to revolt
                 }
 			}
 			save_scope_as = target_revolted_culture
-            #save_scope_as = target_annexed_culture
-            
-            # root = {
-            #     trigger_event = { id = cultural_revolt_inv.2 }
-            # }
             
 			random_list = {
 				600 = {}
-				2 = {
+				2000 = {
 					modifier = {
                         factor = 5
                         scope:target_revolted_culture = {
@@ -57,9 +52,20 @@ cultural_revolt_inv.1 = { #looking for cultures ready to revolt
 					modifier = {
                         factor = 0.8
                         scope:target_revolted_culture = {
+                            has_country_culture_modifier = torture_protection
+                        }
+                    }
+					modifier = {
+                        factor = 1.5
+                        scope:target_revolted_culture = {
+                            has_country_culture_modifier = dissatisfied_culture
+                        }
+                    }
+					modifier = {
+                        factor = 0.8
+                        scope:target_revolted_culture = {
                             OR = {
                                 has_country_culture_modifier = right_of_marriage
-                                has_country_culture_modifier = torture_protection
                             }
                             
                         }
@@ -77,8 +83,33 @@ cultural_revolt_inv.1 = { #looking for cultures ready to revolt
 					modifier = {
                         factor = 1.2
                         scope:target_revolted_culture = {
-                            has_country_culture_modifier = slave_rights_imposed
-                            has_country_culture_modifier = rights_revoked
+                            OR = {
+                                has_country_culture_modifier = slave_rights_imposed
+                                has_country_culture_modifier = rights_revoked
+                            }
+                            
+                        }
+                    }
+					modifier = {
+                        factor = 1.2
+                        scope:target_revolted_culture = {
+                            has_country_culture_modifier = annexed_culture_unhappy
+                        }
+                    }
+					modifier = {
+                        factor = 0.8
+                        scope:target_revolted_culture = {
+                            OR = {
+                                has_country_culture_modifier = protected_customs 
+                                has_country_culture_modifier = appeased_protests
+                            }
+                            
+                        }
+                    }
+					modifier = {
+                        factor = 0.7
+                        scope:target_revolted_culture = {
+                            has_country_culture_modifier = respected_annexed_culture
                         }
                     }
 					modifier = {
@@ -105,12 +136,22 @@ cultural_revolt_inv.1 = { #looking for cultures ready to revolt
                             stability < 10
                         }
                     }
-                    root = {
-                        trigger_event = { 
-                            id = cultural_annexed_revolt.2
-                            days = {1 360}
+                        if = {
+                            limit = { 
+                                root = {
+                                 any_owned_province = {
+                                    dominant_province_culture = scope:target_revolted_culture.culture
+                                }}
+                            }
+                            root = {
+                                trigger_event = { 
+                                    id = cultural_revolt_inv.2
+                                    days = {1 10}
+                                }
+                                
+                            }
                         }
-                    }
+                    
 				}
 			}
 		}
@@ -118,13 +159,14 @@ cultural_revolt_inv.1 = { #looking for cultures ready to revolt
 
 }
 
-cultural_revolt_inv.2 = {
+cultural_revolt_inv.2 = { # the first revolt - small
     type = country_event
     title = "cultural_revolt_event.2.t"
     desc = "cultural_revolt_event.2.desc" 
     picture = proscription
     goto_location = scope:random_province_revolted_cult
     left_portrait = scope:revolted_prov_gov 
+
 
     immediate = {
         if = {
@@ -133,7 +175,7 @@ cultural_revolt_inv.2 = {
                     governor_or_ruler = {
                         NOT = { has_culture = scope:target_revolted_culture.culture }
                         OR = {
-                            finesse >= 10
+                            charisma  >= 10
                             has_trait = prominent 
                             has_trait = silver_tongued 
                             has_trait = wise
@@ -153,7 +195,7 @@ cultural_revolt_inv.2 = {
                     governor_or_ruler = {
                         NOT = { has_culture = scope:target_revolted_culture.culture }
                         OR = {
-                            finesse >= 10
+                            charisma >= 10
                             has_trait = prominent 
                             has_trait = silver_tongued 
                             has_trait = wise
@@ -190,36 +232,26 @@ cultural_revolt_inv.2 = {
             }
         }
         else = {
-            random_country_state = {
-                limit = {
-                    any_state_province = {
-                        dominant_province_culture = scope:target_annexed_culture.culture	
-                    }
-                
-                }
-                random_state_province = {
-                    limit = {
-                        dominant_province_culture = scope:target_annexed_culture.culture
-                    }
-                    weight = {
-                        modifier = {
-                            add = total_population
-                        }
-                    }
-                    save_scope_as = random_province_unhappy_cult
-                }
+            
+			ordered_owned_province = {
+				limit = { dominant_province_culture = scope:target_revolted_culture.culture }
+				max = 1
+				order_by = total_population
+				save_scope_as = random_province_revolted_cult
+			}
+            scope:random_province_revolted_cult = {
                 if = {
                     limit = {
                         exists = governor_or_ruler
                     }
                     governor_or_ruler = {
-                        save_scope_as = unhappy_prov_gov
+                        save_scope_as = revolted_prov_gov
                     }
                 }
                 else = {
                     root = {
                         current_ruler = {
-                            save_scope_as = unhappy_prov_gov
+                            save_scope_as = revolted_prov_gov
                         }
                     }
                 }
@@ -233,7 +265,273 @@ cultural_revolt_inv.2 = {
 
     
     option = {
-        name = omg_test_event.a
+        name = cultural_revolt_inv.2.a
+        scope:target_revolted_culture = {
+            add_country_culture_modifier = {
+                name = "dissatisfied_culture"
+				duration = 3650
+            }
+        }
+        custom_tooltip = cultural_revolt_inv.2.a.tt1
+    }
+
+    option = {
+        name = cultural_revolt_inv.2.b
+        trigger = {
+            scope:revolted_prov_gov = {
+                NOT = { has_trait = harsh }
+            }
+        }
+        if = {
+            limit = {
+                scope:target_revolted_culture = {
+                    NOT = {
+                        has_country_culture_modifier = torture_protection
+                    }
+                }
+            }
+            add_stability = -5
+			culture_state_loyalty_effect = yes
+			scope:target_revolted_culture = {
+				add_country_culture_modifier = {
+					name = "torture_protection" 
+					duration = -1
+				}
+			}
+			add_country_modifier = {
+				name = "extended_torture_protection"
+				duration = 1095
+			}
+            if = {
+                limit = {
+                    is_republic = yes
+                }
+                if = {
+                    limit = {
+                        has_party_type = optimates_party
+                    }
+                    add_party_approval = {
+                        party_type = optimates_party
+                        VALUE = party_disapproval_small_svalue
+                    }
+                    add_party_approval = {
+                        party_type = boni_party
+                        VALUE = party_approval_small_svalue
+                    }
+                }
+                else = {
+                    add_party_approval = {
+                        party_type = democratic_party
+                        VALUE = party_approval_small_svalue
+                    }
+                    add_party_approval = {
+                        party_type = traditionalist_party
+                        VALUE = party_disapproval_small_svalue
+                    }
+                }
+            }
+
+        }
+        else_if = {
+            limit = { 
+                scope:target_revolted_culture = {
+                    NOT = {
+                        has_country_culture_modifier = right_to_enter_contracts
+                    }
+                }
+            }
+			add_stability = -5
+			culture_state_loyalty_effect = yes
+			scope:target_revolted_culture = {
+				add_country_culture_modifier = {
+					name = "right_to_enter_contracts" 
+					duration = -1
+				}
+			}
+			add_country_modifier = {
+				name = "extended_contract_rights"
+				duration = 1095
+			}
+			approval_effect = {
+				PARTY = optimates_party
+				VALUE = party_disapproval_small_svalue
+			}
+			approval_effect = {
+				PARTY = boni_party
+				VALUE = party_approval_small_svalue
+			}
+			approval_effect = {
+				PARTY = oligarchic_party
+				VALUE = party_disapproval_small_svalue
+			}
+			approval_effect = {
+				PARTY = democratic_party
+				VALUE = party_approval_small_svalue
+			}
+        }
+        else_if = {
+            limit = { 
+                scope:target_revolted_culture = {
+                    NOT = {
+                        has_country_culture_modifier = inheritance_right
+                    }
+                }
+            }
+            add_stability = -5
+			culture_state_loyalty_effect = yes
+			scope:target_revolted_culture = {
+				add_country_culture_modifier = {
+					name = "inheritance_right" 
+					duration = -1
+				}
+			}
+			add_country_modifier = {
+				name = "extended_inheritance_right"
+				duration = 1095
+			}
+            if = {
+                limit = {
+                    is_republic = yes
+                }
+                if = {
+                    limit = {
+                        has_party_type = optimates_party
+                    }
+                    add_party_approval = {
+                        party_type = optimates_party
+                        VALUE = party_disapproval_medium_svalue
+                    }
+                    add_party_approval = {
+                        party_type = populares_party
+                        VALUE = party_approval_medium_svalue
+                    }
+                }
+                else = {
+                    add_party_approval = {
+                        party_type = democratic_party
+                        VALUE = party_approval_medium_svalue
+                    }
+                    add_party_approval = {
+                        party_type = traditionalist_party
+                        VALUE = party_disapproval_medium_svalue
+                    }
+                }
+            }
+        }
+        else_if = {
+            limit = { 
+                scope:target_revolted_culture = {
+                    NOT = {
+                        has_country_culture_modifier = right_to_enter_contracts
+                    }
+                }
+            }
+            add_stability = -10
+			culture_state_loyalty_effect = yes
+			scope:target_revolted_culture = {
+				add_country_culture_modifier = {
+					name = right_of_marriage
+					duration = -1
+				}
+			}
+			add_country_modifier = {
+				name = "extended_right_of_marriage"
+				duration = 1825
+			}
+			ordered_owned_province = {
+				limit = { dominant_province_culture = scope:target_revolted_culture.culture }
+				max = 1
+				order_by = total_population
+				state = {
+					add_state_modifier = {
+						name = "intermarriage_spree"
+						duration = 1825
+					}
+				}
+			}
+			approval_effect = {
+				PARTY = populares_party
+				VALUE = party_disapproval_small_svalue
+			}
+			approval_effect = {
+				PARTY = boni_party
+				VALUE = party_approval_small_svalue
+			}
+			approval_effect = {
+				PARTY = oligarchic_party
+				VALUE = party_disapproval_small_svalue
+			}
+			approval_effect = {
+				PARTY = democratic_party
+				VALUE = party_approval_small_svalue
+			}
+        }
+        
+        random_list = {
+            300 = { 
+                scope:target_revolted_culture = {
+                    add_country_culture_modifier = {
+                        name = appeased_protests
+                        duration = 7300
+                    }
+                }
+                custom_tooltip = cultural_revolt_inv.2.b.tt2
+            }
+            1 = {
+                modifier = {
+                    add = scope:target_revolted_culture.country_culture_pop_count
+                }
+                modifier = {
+                    factor = 0.7
+                    scope:revolted_prov_gov = {
+                            charisma >= 10
+                    }
+                }
+                modifier = {
+                    factor = 0.7
+                    scope:revolted_prov_gov = {
+                            has_trait = silver_tongued
+                    }
+                }
+                modifier = {
+                    factor = 0.6
+                    scope:revolted_prov_gov = {
+                            has_trait = prominent
+                    }
+                }
+                modifier = {
+                    factor = 1.2
+                    scope:revolted_prov_gov = {
+                            has_trait = corrupt
+                    }
+                }
+                custom_tooltip = cultural_revolt_inv.2.b.tt3
+                trigger_event = {
+                    id = cultural_revolt_inv.3
+                    days = {1 10}
+                }
+            }
+        }
+    }
+
+    option = {
+        name = cultural_revolt_inv.2.c
+        trigger = {
+            scope:revolted_prov_gov = {
+                NOR = { 
+                    has_culture = scope:target_revolted_culture.culture
+                    has_trait = harsh
+                    has_trait = rash
+                }
+                OR = {
+                    finesse >= 10
+                    has_trait = silver_tongued 
+                    has_trait = stubborn
+                    has_trait = just
+                }
+            }
+        }
+
     }
 }
 
