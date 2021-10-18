@@ -15,6 +15,7 @@ yearly_country_pulse = {
 		galatian_invasion.71
 		rel_flavor_kemetic.9
 		cultural_annexed_revolt.1
+		cultural_revolt_inv.1
 	}
 
 	effect = {

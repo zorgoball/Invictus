@@ -169,7 +169,7 @@ cultural_revolt_inv.2 = { # the first revolt - small
 
 
     immediate = {
-        if = {
+        if = { #check if competent governor or ruler
             limit = { 
                 any_governorships = {
                     governor_or_ruler = {
@@ -231,7 +231,7 @@ cultural_revolt_inv.2 = { # the first revolt - small
 
             }
         }
-        else = {
+        else = { #else, just take the governor of the chosen province
             
 			ordered_owned_province = {
 				limit = { dominant_province_culture = scope:target_revolted_culture.culture }
@@ -264,7 +264,7 @@ cultural_revolt_inv.2 = { # the first revolt - small
     }
 
     
-    option = {
+    option = { #do nothing - get the modifier
         name = cultural_revolt_inv.2.a
         scope:target_revolted_culture = {
             add_country_culture_modifier = {
@@ -275,14 +275,15 @@ cultural_revolt_inv.2 = { # the first revolt - small
         custom_tooltip = cultural_revolt_inv.2.a.tt1
     }
 
-    option = {
+    option = { #give them rights
         name = cultural_revolt_inv.2.b
+        custom_tooltip = cultural_revolt_inv.2.b.tt1
         trigger = {
             scope:revolted_prov_gov = {
                 NOT = { has_trait = harsh }
             }
         }
-        if = {
+        if = { #check the already existent rights
             limit = {
                 scope:target_revolted_culture = {
                     NOT = {
@@ -466,9 +467,18 @@ cultural_revolt_inv.2 = { # the first revolt - small
 				VALUE = party_approval_small_svalue
 			}
         }
+
+        else = { #all rights already taken - give them some hard modifier
+			scope:target_revolted_culture = {
+				add_country_culture_modifier = {
+					name = protected_customs
+					duration = 3600
+				}
+			}
+        }
         
         random_list = {
-            300 = { 
+            300 = { #succeeds
                 scope:target_revolted_culture = {
                     add_country_culture_modifier = {
                         name = appeased_protests
@@ -477,7 +487,7 @@ cultural_revolt_inv.2 = { # the first revolt - small
                 }
                 custom_tooltip = cultural_revolt_inv.2.b.tt2
             }
-            1 = {
+            1 = { #fails
                 modifier = {
                     add = scope:target_revolted_culture.country_culture_pop_count
                 }
@@ -500,12 +510,24 @@ cultural_revolt_inv.2 = { # the first revolt - small
                     }
                 }
                 modifier = {
+                    factor = 0.8
+                    scope:revolted_prov_gov = {
+                            has_trait = generous
+                    }
+                }
+                modifier = {
                     factor = 1.2
                     scope:revolted_prov_gov = {
                             has_trait = corrupt
                     }
                 }
                 custom_tooltip = cultural_revolt_inv.2.b.tt3
+                scope:target_revolted_culture = {
+                    add_country_culture_modifier = {
+                        name = "dissatisfied_culture"
+                        duration = 3650
+                    }
+                }
                 trigger_event = {
                     id = cultural_revolt_inv.3
                     days = {1 10}
@@ -514,7 +536,7 @@ cultural_revolt_inv.2 = { # the first revolt - small
         }
     }
 
-    option = {
+    option = { #they already have some rights and gov is competent
         name = cultural_revolt_inv.2.c
         trigger = {
             scope:revolted_prov_gov = {
@@ -530,8 +552,145 @@ cultural_revolt_inv.2 = { # the first revolt - small
                     has_trait = just
                 }
             }
+            scope:target_revolted_culture = {
+                OR = {
+                    has_country_culture_modifier = right_to_enter_contracts
+                    has_country_culture_modifier = inheritance_right
+                    has_country_culture_modifier = torture_protection
+                    has_country_culture_modifier = right_of_marriage
+                }
+            }
+        }
+        highlight = yes
+        custom_tooltip = cultural_revolt_inv.2.c.tt1
+        random_list = {
+            200 = { #suceeds
+                custom_tooltip = cultural_revolt_inv.2.c.tt2
+            }
+            1 = { #fails
+                modifier = {
+                    add = scope:target_revolted_culture.country_culture_pop_count
+                }
+                modifier = {
+                    factor = 0.7
+                    scope:revolted_prov_gov = {
+                            finesse >= 10
+                    }
+                }
+                modifier = {
+                    factor = 0.7
+                    scope:revolted_prov_gov = {
+                            has_trait = silver_tongued
+                    }
+                }
+                modifier = {
+                    factor = 0.8
+                    scope:revolted_prov_gov = {
+                            has_trait = stubborn
+                    }
+                }
+                modifier = {
+                    factor = 0.6
+                    scope:revolted_prov_gov = {
+                            has_trait = just
+                    }
+                }
+                modifier = {
+                    factor = 1.2
+                    scope:revolted_prov_gov = {
+                            has_trait = corrupt
+                    }
+                }
+                custom_tooltip = cultural_revolt_inv.2.c.tt3
+                scope:target_revolted_culture = {
+                    add_country_culture_modifier = {
+                        name = "dissatisfied_culture"
+                        duration = 3650
+                    }
+                }
+                trigger_event = {
+                    id = cultural_revolt_inv.3
+                    days = {1 10}
+                }
+            }
         }
 
     }
+    option = { #hit them with the stick
+        name = cultural_revolt_inv.2.d
+        custom_tooltip = cultural_revolt_inv.2.d.tt1
+
+		add_manpower = { #10 manpower per pop
+			value = 0
+			subtract = scope:target_revolted_culture.country_culture_pop_count
+			divide = 100
+			max = root.manpower
+		}
+
+        random_list = {#base 50/50 whatever the pop
+            50 = { #suceeds
+                custom_tooltip = cultural_revolt_inv.2.d.tt2
+            }
+            50 = { #fails
+                modifier = {
+                    factor = 0.7
+                    scope:revolted_prov_gov = {
+                            martial >= 10
+                    }
+                }
+                modifier = {
+                    factor = 0.7
+                    scope:revolted_prov_gov = {
+                            has_trait = cruel
+                    }
+                }
+                modifier = {
+                    factor = 0.8
+                    scope:revolted_prov_gov = {
+                            has_trait = harsh
+                    }
+                }
+                modifier = {
+                    factor = 0.6
+                    scope:revolted_prov_gov = {
+                            has_trait = disciplined
+                    }
+                }
+                modifier = {
+                    factor = 1.2
+                    scope:revolted_prov_gov = {
+                            has_trait = uncaring
+                    }
+                }
+                custom_tooltip = cultural_revolt_inv.2.d.tt3
+                scope:target_revolted_culture = {
+                    add_country_culture_modifier = {
+                        name = "dissatisfied_culture"
+                        duration = 3650
+                    }
+                }
+                trigger_event = {
+                    id = cultural_revolt_inv.3
+                    days = {1 10}
+                }
+            }
+        }
+
+    }
+}
+
+cultural_revolt_inv.3 = { # inform the player that it did not work
+    type = country_event
+    title = "cultural_revolt_event.3.t"
+    desc = "cultural_revolt_event.3.desc" 
+    picture = proscription
+    goto_location = scope:random_province_revolted_cult
+    left_portrait = scope:revolted_prov_gov 
+
+    option = {
+        name = cultural_revolt_inv.3.a
+        custom_tooltip = cultural_revolt_inv.3.a.tt1
+    }
+
 }
 
