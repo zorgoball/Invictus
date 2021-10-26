@@ -1,0 +1,72 @@
+﻿namespace = world_news
+
+##These events should all be added to the Yearly on_action in the same place as the dhe_roman_warm_period.1 event.
+world_news.1 = { #First World News Event
+	type = province_event
+	
+	picture = greek_city_market
+	
+	title = "world_news.1.t"
+	desc = "world_news.1.desc"
+	
+	left_portrait = current_ruler
+	
+	trigger = {	#Trigger Field. What makes the event fire.
+		current_date > 550.1.1 #Change this date
+		NOT = { has_global_variable = world_news_cooldown_variable }
+	}
+	
+	immediate = {	##Immediate Field. Stuff that happens as soon as the event fires.
+		set_global_variable = {
+		name = world_news_cooldown_variable
+		}
+	}
+	
+	option = {	#Option Field. Shows the player option.
+		name = "world_news.1.a"
+		##Flavor Text Only
+	}
+	after = {	#After Field. What happens after option is clicked. (probably not needed here)
+
+	}
+}
+world_news.2 = { #Rome owns Carthage.
+	type = province_event
+	
+	picture = greek_city_market
+	
+	title = "world_news.2.t"
+	desc = "world_news.2.desc"
+	
+	left_portrait = current_ruler
+	
+	trigger = {
+		current_date > 455.1.1 	#Change this date
+		NOT = { has_global_variable = world_news_cooldown_variable_two }
+		NOT = { tag = ROM }	#Event won't fire for Rome
+		c:ROM = {
+			owns = 3256	#Romw Owns Carthage
+		}
+	}
+	
+	immediate = {
+		set_global_variable = {
+		name = world_news_cooldown_variable_two
+		}
+	}
+	
+	option = {
+		name = "world_news.2.a"
+		##Flavor Text Only
+	}
+	after = {	#This may not be necessary but I want to show it's possible
+
+	}	
+}
+##Add More Events with a similar template to this first event.
+##They don't all have to only be flavor text you could also add Modifiers to certain provinces or something else.
+##Ideas for World News Events(definetely not stolen from rome total war I swear):
+##stoic philosophy, hand pump invented, through a glass clearly, archimedes screw, greek logic, star catalogue, rites of
+#bacchus banned, concrete invented, philosophy is foolish, astronomy advances, lex aebutia, roman stoicism,
+#lex papira, vestal virgin struck down, de rerum natura, lex pompeia, a new religion, de materia medica, julian calender,
+#the aeneid, lex adulteriis coercendis, trouble in judea, lex fufia cantinia
