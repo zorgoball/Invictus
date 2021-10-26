@@ -6,3 +6,13 @@ family_reorganisation = {
 	monthly_character_popularity = 0.1
 }
 
+
+#### cultural revolt event modifiers - Diskiant
+
+culture_spokesman = {
+	prominence = -3
+	monthly_democratic_party_conviction = 0.03
+	monthly_populares_party_conviction = 0.03
+}
+
+

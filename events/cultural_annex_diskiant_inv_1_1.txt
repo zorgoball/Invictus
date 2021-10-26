@@ -292,9 +292,6 @@ cultural_annexed_revolt.2 = {
         }
 
     }
-    after = { 
-
-    }
 }
 cultural_annexed_revolt.1 = { #iterator through every culture to see if they're triggerable
     
