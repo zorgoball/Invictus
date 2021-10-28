@@ -226,8 +226,11 @@ regional_trading_center:0 "Regional Trading Center"
  desc_angry_town:0 "This city is home to a hotbed of uprising"
  got_repressed:0 "Repressed"
  desc_got_repressed:0 "Violent repression has left its mark"
+ crucified_spokesman:0 "Voice crucified"
+ desc_crucified_spokesman:0 "The spokesman of this people have been killed by its oppressors."
 
  spokesman_elevated:0 "Promoted spokesman"
+ spokesman_culture_repressed:0 "Repressed my culture"
  culture_spokesman:0 "Spokesman"
  desc_culture_spokesman:0 "Voice of its people"
 
