@@ -681,7 +681,7 @@ treasure_manager = {
         }
         95 = { #r2 Phrygia
         	key = "treasure_gordian_knot"
-            icon = "treasure_chest"
+            icon = "cr_treasure_gordian_knot_01"
             state_modifier = {
                 local_monthly_state_loyalty = 0.15
             }
@@ -1008,7 +1008,7 @@ treasure_manager = {
 		}
 		199 = {
 			key = "stone_of_jacob" #Bet-El
-			icon = "treasure_chest"
+			icon = "stone_of_jacob"
             state_modifier = {
 				local_tax_modifier = 0.2
 			}
@@ -1386,7 +1386,7 @@ treasure_manager = {
 				local_pop_conversion_speed_modifier = 0.2
 			}
 		}
-		510 = { # Gigurria - Fibula of Bragança
+		510 = { # Gigurria - Fibula of Braganca
 			key = "treasure_lusitanian_fibula"
 			icon = "treasure_chest"
 			state_modifier = {
@@ -4061,16 +4061,10 @@ provinces = { #Any entry must contain a comment with city name.
 	8260 = { # Harawah pass
 		modifier = { modifier = desert_pass always = yes }
 	}
-	8259 = { # Shaqiq pass
-		modifier = { modifier = desert_pass always = yes }
-	}
-	8258 = { # Hait pass
-		modifier = { modifier = desert_pass always = yes }
-	}
 	8124 = { # Qabr pass
 		modifier = { modifier = desert_pass always = yes }
 	}
-	8123 = {
+	8123 = { #Tarfawi pass
 		modifier = { modifier = desert_pass always = yes }
 	}
 	#Desert Passes (Invictus) - These Minor Desert Passes DO have an owner
@@ -4150,7 +4144,7 @@ provinces = { #Any entry must contain a comment with city name.
 	4565 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Pontus Euxine
 	4655 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Qataba
 	4787 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Persian Gulf
-	6009 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Öland
+	6009 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Oland
 	6038 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Grani
 	6526 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Indus
 	6816 = { modifier = { modifier = pirate_haven_modifier always = yes } } #Kathiawar
@@ -4833,6 +4827,28 @@ provinces = { #Any entry must contain a comment with city name.
 	7426 = {
 		aqueduct_building = 2
 	}
+	
+	### Arabia Felix additions
+
+	7202 = { #Tylos
+		modifier = { modifier = pearl_divers_tylos always = yes }
+		commerce_building = 2
+	}
+
+	7530 = { #Soqotra
+		modifier = { modifier = dragonsblood_soqotra always = yes }
+	}
+
+	7592 = { #Ganagaras
+		modifier = { modifier = royal_ironworks_ganagaras always = yes }
+	}	
+
+	4685 = { #Qana
+		modifier = { modifier = incense_fields_qana always = yes }
+	}
+	
+	###
+	
 	7657 = {
 		aqueduct_building = 2
 	}
@@ -12155,9 +12171,16 @@ country = {
 		#Arabia
 		
 		MAK = {
-			government = tribal_kingdom
+			government = democratic_republic
 			primary_culture = makan
 			religion = arabian_pantheon
+
+			technology={
+				military_tech={ level=1 progress=0 }
+				civic_tech={ level=1 progress=0 }
+				oratory_tech={ level=1 progress=0 }
+				religious_tech= { level=1 progress=0  }
+			}
 
 			capital = 7209
 			
@@ -12171,6 +12194,13 @@ country = {
 			primary_culture = makan
 			religion = arabian_pantheon
 
+			technology={
+				military_tech={ level=1 progress=0 }
+				civic_tech={ level=1 progress=0 }
+				oratory_tech={ level=1 progress=0 }
+				religious_tech= { level=1 progress=0  }
+			}
+
 			capital = 7199
 			
 			own_control_core = 	{
@@ -12182,6 +12212,13 @@ country = {
 			government = plutocratic_republic
 			primary_culture = babylonian
 			religion = arabian_pantheon
+
+			technology={
+				military_tech={ level=2 progress=0 }
+				civic_tech={ level=2 progress=0 }
+				oratory_tech={ level=2 progress=0 }
+				religious_tech= { level=2 progress=0  }
+			}
 
 			capital = 7202
 			
@@ -12195,7 +12232,14 @@ country = {
 			primary_culture = sheban
 			religion = arabian_pantheon
 
-			capital = 4682
+			technology={
+				military_tech={ level=1 progress=0 }
+				civic_tech={ level=1 progress=0 }
+				oratory_tech={ level=1 progress=0 }
+				religious_tech= { level=1 progress=0  }
+			}
+
+			capital = 4666
 			
 			own_control_core = 	{
 				4682 4696 4664 4666 4683 4689 4686 4688 4641 4665 4667
@@ -12206,6 +12250,7 @@ country = {
 			government = tribal_kingdom
 			primary_culture = qedarite
 			religion = arabian_pantheon
+			centralization=-30
 
 			capital = 4721
 			
@@ -12218,6 +12263,14 @@ country = {
 			government = tribal_kingdom
 			primary_culture = minaean
 			religion = arabian_pantheon
+			republic_election_reforms = republican_election_4
+
+			technology={
+				military_tech={ level=1 progress=0 }
+				civic_tech={ level=1 progress=0 }
+				oratory_tech={ level=1 progress=0 }
+				religious_tech= { level=1 progress=0  }
+			}
 
 			capital = 4700
 			
@@ -12231,7 +12284,14 @@ country = {
 			primary_culture = hadhrami
 			religion = arabian_pantheon
 
-			capital = 4676
+			technology={
+				military_tech={ level=1 progress=0 }
+				civic_tech={ level=1 progress=0 }
+				oratory_tech={ level=1 progress=0 }
+				religious_tech= { level=1 progress=0  }
+			}
+
+			capital = 4678
 			
 			own_control_core = 	{
 				4676 4677 4712 4657 4658 4685 4679 4678 4710 4711 4675 4703 4704 4705
@@ -12248,6 +12308,13 @@ country = {
 			own_control_core = 	{
 				4662 4693 4698 4694 4687 4692 4695 4661 4697 4663 4681 4656 4660 4659 4654 4655
 			}
+			
+			technology={
+				military_tech={ level=1 progress=0 }
+				civic_tech={ level=1 progress=0 }
+				oratory_tech={ level=1 progress=0 }
+				religious_tech= { level=1 progress=0  }
+			}
 		}
 		
 		HMJ = {
@@ -12261,7 +12328,6 @@ country = {
 				4680 4643 4644 4645 4646 4648 4649 4684 4647 4651 4652 4650 4642 4691
 			}
 		}
-		
 		
 		NBT = {
 			government = despotic_monarchy
@@ -13757,7 +13823,7 @@ country = {
 		
 		# CRIMEA and ABKHAZIA
 		
-		SND = {
+		SND = { #sindica
 			government = tribal_kingdom
 			primary_culture = sindi
 			religion = indo_iranian_religion
@@ -13772,7 +13838,7 @@ country = {
 		SCE = {
 			family = 64
 			government = tribal_chiefdom
-			primary_culture = siraci
+			primary_culture = sarmatian
 			religion = indo_iranian_religion
 			
 			capital = 7607
@@ -13840,12 +13906,12 @@ country = {
 			religion = indo_iranian_religion
 			centralization=10
 			
-			capital = 6144 # old capital = 4557 
+			capital = 6144 
 			
 			own_control_core = {
-				4535 4545 4533 4551 4552 4532 4546 4547 4548 #moved to Iazygia: 4553 7193 4554 4555 4556 4557
-				7187 7188 7191 7190 7192 6124 
-				6144 6146 6147 # new provinces
+				4532 4535 4545 4533 4551 4552 4546 4547 4548
+				6124 6144 6146 6147
+				7187 7188 7191 7190 7192 
 			}
 		}
 		
@@ -13893,19 +13959,6 @@ country = {
 			}
 
 			treasures = { 101 }
-		}
-		
-		SRM = {
-			government = tribal_chiefdom
-			primary_culture = sarmatian
-			religion = indo_iranian_religion
-			diplomatic_stance=warmongering_stance
-			
-			centralization=-10
-			
-			own_control_core = {
-				
-			}
 		}
 		
 		MAE = {
