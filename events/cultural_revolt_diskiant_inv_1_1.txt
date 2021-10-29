@@ -188,96 +188,41 @@ cultural_revolt_inv.2 = { # the first revolt - small
 
 
     immediate = {
-        if = { #check if competent governor or ruler
-            limit = { 
-                any_governorships = {
-                    governor_or_ruler = {
-                        NOT = { has_culture = scope:target_revolted_culture.culture }
-                        OR = {
-                            charisma  >= 10
-                            has_trait = prominent 
-                            has_trait = silver_tongued
-                            has_trait = generous
-                        }
-                    }
-                    any_governorship_state = {
-                        any_state_province = {
-                            dominant_province_culture = scope:target_revolted_culture.culture	
-                        }
-                    }
-                }
-            }
-            
-            random_governorships = {
-                limit = {
-                
-                    governor_or_ruler = {
-                        NOT = { has_culture = scope:target_revolted_culture.culture }
-                        OR = {
-                            charisma >= 10
-                            has_trait = prominent 
-                            has_trait = silver_tongued
-                            has_trait = generous
-                        }
-                    }
-                    any_governorship_state = {
-                        any_state_province = {
-                            dominant_province_culture = scope:target_revolted_culture.culture	
-                        }
-                    }
-                }
-                governor_or_ruler = { 
-                    save_scope_as = revolted_prov_gov
-                    random_governor_state = {
-                        limit = {
-                            any_state_province = {
-                                dominant_province_culture = scope:target_revolted_culture.culture	
-                            }
-                        }
-                        random_state_province = {
-                            limit = {
-                                dominant_province_culture = scope:target_revolted_culture.culture
-                            }
-                            weight = {
-                                modifier = {
-                                    add = total_population
-                                }
-                            }
-                            save_scope_as = random_province_revolted_cult
-                        }
-                    }
-                }
-
-            }
-        }
-        else = { #else, just take the governor of the chosen province
-            
-			ordered_owned_province = {
-				limit = { dominant_province_culture = scope:target_revolted_culture.culture }
-				max = 1
-				order_by = total_population
-				save_scope_as = random_province_revolted_cult
+        ordered_governorships = {#get the governorship with the most provinces with that pop
+			limit = {
+				any_governorship_state = {
+					any_state_province = {
+						dominant_province_culture = scope:target_revolted_culture.culture
+						owner = ROOT
+					}
+				}
+				exists = governor
 			}
-            scope:random_province_revolted_cult = {
-                if = {
-                    limit = {
-                        exists = governor_or_ruler
-                    }
-                    governor_or_ruler = {
-                        save_scope_as = revolted_prov_gov
-                    }
-                }
-                else = {
-                    root = {
-                        current_ruler = {
-                            save_scope_as = revolted_prov_gov
-                        }
-                    }
-                }
-                
-            
+			max = 1
+			check_range_bounds = no
+			order_by = {
+				value = 0
+				every_governorship_state = {
+					every_state_province = {
+						limit = {
+							dominant_province_culture = scope:target_revolted_culture.culture
+						}
+						add = 1
+					}
+				}
+			}
+			governor_or_ruler = {
+                save_scope_as = revolted_prov_gov
             }
-
+		}
+        ordered_owned_province = {
+            limit = { 
+                dominant_province_culture = scope:target_revolted_culture.culture
+                governor = scope:revolted_prov_gov
+            }
+            max = 1
+            order_by = total_population
+            save_scope_as = random_province_revolted_cult
         }
            
     }
@@ -646,7 +591,7 @@ cultural_revolt_inv.2 = { # the first revolt - small
 			value = 0
 			subtract = scope:target_revolted_culture.country_culture_pop_count
 			divide = 100
-			max = root.manpower
+			max = root.max_manpower
 		}
         hidden_effect = {
             if = {
@@ -754,96 +699,41 @@ cultural_revolt_inv.4 = {
     left_portrait = scope:revolted_prov_gov
 
     immediate = {
-        if = { #check if competent governor or ruler
-            limit = { 
-                any_governorships = {
-                    governor_or_ruler = {
-                        NOT = { has_culture = scope:target_revolted_culture.culture }
-                        OR = {
-                            charisma  >= 10
-                            has_trait = prominent 
-                            has_trait = silver_tongued 
-                            has_trait = wise
-                        }
-                    }
-                    any_governorship_state = {
-                        any_state_province = {
-                            dominant_province_culture = scope:target_revolted_culture.culture	
-                        }
-                    }
-                }
-            }
-            
-            random_governorships = {
-                limit = {
-                
-                    governor_or_ruler = {
-                        NOT = { has_culture = scope:target_revolted_culture.culture }
-                        OR = {
-                            charisma >= 10
-                            has_trait = prominent 
-                            has_trait = silver_tongued 
-                            has_trait = wise
-                        }
-                    }
-                    any_governorship_state = {
-                        any_state_province = {
-                            dominant_province_culture = scope:target_revolted_culture.culture	
-                        }
-                    }
-                }
-                governor_or_ruler = { 
-                    save_scope_as = revolted_prov_gov
-                    random_governor_state = {
-                        limit = {
-                            any_state_province = {
-                                dominant_province_culture = scope:target_revolted_culture.culture	
-                            }
-                        }
-                        random_state_province = {
-                            limit = {
-                                dominant_province_culture = scope:target_revolted_culture.culture
-                            }
-                            weight = {
-                                modifier = {
-                                    add = total_population
-                                }
-                            }
-                            save_scope_as = random_province_revolted_cult
-                        }
-                    }
-                }
-
-            }
-        }
-        else = { #else, just take the governor of the chosen province
-            
-			ordered_owned_province = {
-				limit = { dominant_province_culture = scope:target_revolted_culture.culture }
-				max = 1
-				order_by = total_population
-				save_scope_as = random_province_revolted_cult
+        ordered_governorships = {#get the governorship with the most provinces with that pop
+			limit = {
+				any_governorship_state = {
+					any_state_province = {
+						dominant_province_culture = scope:target_revolted_culture.culture
+						owner = ROOT
+					}
+				}
+				exists = governor
 			}
-            scope:random_province_revolted_cult = {
-                if = {
-                    limit = {
-                        exists = governor_or_ruler
-                    }
-                    governor_or_ruler = {
-                        save_scope_as = revolted_prov_gov
-                    }
-                }
-                else = {
-                    root = {
-                        current_ruler = {
-                            save_scope_as = revolted_prov_gov
-                        }
-                    }
-                }
-                
-            
+			max = 1
+			check_range_bounds = no
+			order_by = {
+				value = 0
+				every_governorship_state = {
+					every_state_province = {
+						limit = {
+							dominant_province_culture = scope:target_revolted_culture.culture
+						}
+						add = 1
+					}
+				}
+			}
+			governor_or_ruler = {
+                save_scope_as = revolted_prov_gov
             }
-
+		}
+        ordered_owned_province = {
+            limit = { 
+                dominant_province_culture = scope:target_revolted_culture.culture
+                governor = scope:revolted_prov_gov
+            }
+            max = 1
+            order_by = total_population
+            save_scope_as = random_province_revolted_cult
         }
         hidden_effect = { #for clarity - those towns get a negative modifier
             ordered_owned_province = {
@@ -1023,6 +913,7 @@ cultural_revolt_inv.4 = {
         trigger = {
             any_character = {
                 is_adult = yes
+                is_ruler = no
                 has_culture = scope:target_revolted_culture.culture
                 has_character_modifier = culture_spokesman
             }
@@ -1032,6 +923,7 @@ cultural_revolt_inv.4 = {
         random_character = {
             limit = {
                 is_adult = yes
+                is_ruler = no
                 has_culture = scope:target_revolted_culture.culture
                 has_character_modifier = culture_spokesman
             }
@@ -1053,6 +945,12 @@ cultural_revolt_inv.4 = {
                     factor = 2
                     scope:revolted_spokesman = {
                             loyalty >= 50
+                    }
+                }
+                modifier = {
+                    factor = 2
+                    scope:revolted_spokesman = {
+                        has_any_office = yes
                     }
                 }
                 modifier = {
@@ -1142,7 +1040,7 @@ cultural_revolt_inv.4 = {
                         duration = 3650
                     }
                 }
-                trigger_event = {
+                trigger_event = { #event to notice the refusal
                     id = cultural_revolt_inv.8
                     days = {1 10}
                 }
@@ -1151,126 +1049,130 @@ cultural_revolt_inv.4 = {
 
     }
     option = { #send the army
-    name = cultural_revolt_inv.4.d
-    custom_tooltip = cultural_revolt_inv.4.d.tt1
+        name = cultural_revolt_inv.4.d
+        custom_tooltip = cultural_revolt_inv.4.d.tt1
 
-    add_manpower = { #10 manpower per pop
-        value = 0
-        subtract = scope:target_revolted_culture.country_culture_pop_count
-        divide = 100
-        max = root.manpower
-    }
-    hidden_effect = {
-        if = {
-            limit = {
-                any_character = { 
-                    is_adult = yes
-                    has_culture = scope:target_revolted_culture.culture
-                    has_character_modifier = culture_spokesman
-                }
-            }
-            random_character = {
-                limit = {
-                    is_adult = yes
-                    has_culture = scope:target_revolted_culture.culture
-                    has_character_modifier = culture_spokesman
-                }
-                add_loyalty = spokesman_culture_repressed
+        add_manpower = { #10 manpower per pop
+            value = 0
+            subtract = scope:target_revolted_culture.country_culture_pop_count
+            divide = 100
+            max = root.max_manpower
+        }
+        scope:target_revolted_culture = {
+            add_country_culture_modifier = {
+                name = "got_repressed"
+                duration = 3650
             }
         }
-    }
-
-    random_list = {#base 50/50 whatever the pop
-        50 = { #suceeds
-            custom_tooltip = cultural_revolt_inv.4.d.tt2
-            scope:target_revolted_culture = {
-                add_country_culture_modifier = {
-                    name = "got_repressed"
-                    duration = 3650
-                }
-            }
-            every_owned_province = {
+        if = {
+            limit = { is_monarchy = yes }
+            add_legitimacy = legitimacy_small
+        }
+        
+        hidden_effect = {
+            if = {
                 limit = {
-                    dominant_province_culture = scope:target_revolted_culture.culture
-                    has_province_modifier = angry_town
+                    any_character = { 
+                        is_adult = yes
+                        has_culture = scope:target_revolted_culture.culture
+                        has_character_modifier = culture_spokesman
+                    }
                 }
-                every_pops_in_province = {
+                random_character = {
                     limit = {
-                        pop_culture = scope:target_revolted_culture.culture
+                        is_adult = yes
+                        has_culture = scope:target_revolted_culture.culture
+                        has_character_modifier = culture_spokesman
                     }
-                    random_list = {
-                        20 = { kill_pop = yes }
-                        
-                        80 = {}
-                    }
-                    
+                    add_loyalty = spokesman_culture_repressed
                 }
             }
+        }
 
-            hidden_effect = {
+        random_list = {#base 50/50 whatever the pop
+            50 = { #suceeds
+                    modifier = {
+                        factor = {
+                            value = 1
+                            add = {
+                                value = scope:revolted_prov_gov.martial
+                                divide = 20
+                            }
+                        }
+                    }
+                custom_tooltip = cultural_revolt_inv.4.d.tt2
                 every_owned_province = {
                     limit = {
                         dominant_province_culture = scope:target_revolted_culture.culture
                         has_province_modifier = angry_town
                     }
-                    remove_province_modifier = angry_town
+                    every_pops_in_province = {
+                        limit = {
+                            pop_culture = scope:target_revolted_culture.culture
+                        }
+                        random_list = {
+                            15 = { kill_pop = yes }
+                            
+                            85 = {}
+                        }
+                    
+                    }
+                }
+
+                hidden_effect = {
+                    every_owned_province = {
+                        limit = {
+                            dominant_province_culture = scope:target_revolted_culture.culture
+                            has_province_modifier = angry_town
+                        }
+                        remove_province_modifier = angry_town
+                    }
                 }
             }
-        }
-        50 = { #fails
-            modifier = {
-                factor = 0.7
-                scope:revolted_prov_gov = {
-                        martial >= 10
+            50 = { #fails
+                modifier = {
+                    factor = 3
+                    scope:revolted_prov_gov = {
+                            has_culture = scope:target_revolted_culture.culture
+                    }
                 }
-            }
-            modifier = {
-                factor = 2
-                scope:revolted_prov_gov = {
-                        has_culture = scope:target_revolted_culture.culture
-                }
-            }
-            modifier = {
-                factor = 0.7
-                scope:revolted_prov_gov = {
+                modifier = {
+                    factor = 0.7
+                    scope:revolted_prov_gov = {
                         has_trait = cruel
+                    }
                 }
-            }
-            modifier = {
-                factor = 0.8
-                scope:revolted_prov_gov = {
+                modifier = {
+                    factor = 0.8
+                    scope:revolted_prov_gov = {
                         has_trait = harsh
-                }
-            }
-            modifier = {
-                factor = 0.6
-                scope:revolted_prov_gov = {
+                    }
+               }
+                modifier = {
+                    factor = 0.6
+                    scope:revolted_prov_gov = {
                         has_trait = disciplined
+                    }
                 }
-            }
-            modifier = {
-                factor = 1.2
-                scope:revolted_prov_gov = {
+                modifier = {
+                    factor = 1.2
+                    scope:revolted_prov_gov = {
                         has_trait = uncaring
+                    }
                 }
-            }
-            custom_tooltip = cultural_revolt_inv.4.d.tt3
-            scope:target_revolted_culture = {
-                add_country_culture_modifier = {
-                    name = ""
-                    duration = 3650
+                custom_tooltip = cultural_revolt_inv.4.d.tt3
+                scope:target_revolted_culture = {
+                    add_country_culture_modifier = {
+                        name = "uprisings_happens"
+                        duration = 3650 #10years
+                    }
                 }
-                add_country_culture_modifier = {
-                    name = "got_repressed"
-                    duration = 3650
+                trigger_event = {
+                    id = cultural_revolt_inv.12
+                    days = {1 10}
                 }
-            }
-            trigger_event = {
-                id = cultural_revolt_inv.3
-                days = {1 10}
             }
         }
-    }
     }
 }
 
@@ -1292,6 +1194,7 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
                             is_adult = yes
                             has_culture = scope:target_revolted_culture.culture
                             has_character_modifier = culture_spokesman
+                            is_ruler = no
                             trigger_if = {
                                 limit = {
                                     employer = { gender_equality = no }
@@ -1308,6 +1211,7 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
                         any_character = {
                             is_adult = yes
                             has_culture = scope:target_revolted_culture.culture
+                            is_ruler = no
                             trigger_if = {
                                 limit = {
                                     employer = { gender_equality = no }
@@ -1321,6 +1225,7 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
                     limit = {
                         has_culture = scope:target_revolted_culture.culture
                         is_adult = yes
+                        is_ruler = no
                         trigger_if = {
                             limit = {
                                 employer = { gender_equality = no }
@@ -1355,6 +1260,7 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
             random_character = {
                 limit = {
                     is_adult = yes
+                    is_ruler = no
                     has_culture = scope:target_revolted_culture.culture
                     has_character_modifier = culture_spokesman
                 }
@@ -1364,6 +1270,9 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
         if = {
             limit = {is_monarchy = yes}
             add_legitimacy = legitimacy_small
+        }
+        current_ruler = {
+            save_scope_as = temporary_current_ruler
         }
     }
 
@@ -1382,7 +1291,45 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
                     has_trait = silver_tongued 
                     has_trait = wise
                 }
+                NOT = {
+                    is_rival = scope:revolted_spokesman
+                }
             }
+            scope:revolted_spokesman = {
+                loyalty > 30
+            }
+        }
+        if = {
+            limit = { 
+                scope:temporary_current_ruler = {
+                    charisma >= 10
+                }
+            }
+            custom_tooltip = cultural_revolt_inv.5.a.tt2
+        }
+        else_if = {
+            limit = { 
+                scope:temporary_current_ruler = {
+                    has_trait = prominent 
+                }
+            }
+            custom_tooltip = cultural_revolt_inv.5.a.tt3
+        }
+        else_if = {
+            limit = { 
+                scope:temporary_current_ruler = {
+                    has_trait = silver_tongued
+                }
+            }
+            custom_tooltip = cultural_revolt_inv.5.a.tt4
+        }
+        else_if = {
+            limit = { 
+                scope:temporary_current_ruler = {
+                    has_trait = wise
+                }
+            }
+            custom_tooltip = cultural_revolt_inv.5.a.tt5
         }
         highlight = yes
         scope:target_revolted_culture = {
@@ -1390,15 +1337,23 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
                 name = "respected_annexed_culture"
 				duration = 1825
             }
-         }
-        # every_owned_province = {
-        #     limit = {
-        #         dominant_province_culture = scope:target_revolted_culture.culture
-        #         has_province_modifier = angry_town
-        #     }
-        #     remove_province_modifier = angry_town
-
-        # }
+        }
+        if = {
+            limit = {
+                is_tribal = yes
+             }
+            add_centralization = -3
+        }
+        hidden_effect = {
+            every_owned_province = {
+                limit = {
+                    dominant_province_culture = scope:target_revolted_culture.culture
+                    has_province_modifier = angry_town
+                }
+                remove_province_modifier = angry_town
+    
+            }
+        }
         
     }
     option = {#offer spokeman to be governor
@@ -1448,6 +1403,7 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
 					}
 				}
 			}
+            save_scope_as = temporary_governorship_name #for loc
 			random_governorship_state = {
 				random_state_province = { #just to set the governor
 					save_scope_as = revolted_cultural_governorship_province
@@ -1470,12 +1426,12 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
     }
     option = {#offer the spokesman to be at governement
         name = cultural_revolt_inv.5.c
-        custom_tooltip = cultural_revolt_inv.5.c.tt1
         if = {
             limit = {
                 is_republic = yes
             }
-            scope:revolted_spokesman = { give_office = office_tribune_of_the_soldiers }
+            scope:revolted_spokesman = { give_office = office_plebeian_aedile }
+            custom_tooltip = cultural_revolt_inv.5.c.tt1
             if = {
                 limit = {
                     has_party_type = populares_party
@@ -1512,6 +1468,7 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
                 is_tribal = yes
             }
             scope:revolted_spokesman = { give_office = office_arbitrator }
+            custom_tooltip = cultural_revolt_inv.5.c.tt2
             
         }
         else_if = {
@@ -1519,7 +1476,9 @@ cultural_revolt_inv.5 = { # get some choice of resolving the issue - gain a spok
                 is_monarchy = yes
             }
             scope:revolted_spokesman = { give_office = office_foreign_minister }
+            custom_tooltip = cultural_revolt_inv.5.c.tt3
         }
+        custom_tooltip = cultural_revolt_inv.5.c.tt4
         add_political_influence = subtract_influence_medium
     }
     option = {#kill the spokeman
@@ -1613,5 +1572,18 @@ cultural_revolt_inv.11 = { #Spokesman is not governor, maluses are applied
     right_portrait = scope:revolted_spokesman
 
 }
+cultural_revolt_inv.12 = { #Resistances after the military interventions, losses in pop and needs for reinforcements/rogue army ?
+    type = country_event
+    title = "cultural_revolt_event.12.t"
+    desc = "cultural_revolt_event.12.desc" 
+    picture = senator_conversing
+    goto_location = scope:random_province_revolted_cult
+    left_portrait = scope:revolted_prov_gov 
+    right_portrait = scope:revolted_spokesman
+
+}
+
+
+#If spokesman gov : depending on how high loyalty is, he could calm the unrests and push to more rights. If unloyal, he will push to independance
 
 
