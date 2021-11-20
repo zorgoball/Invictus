@@ -14,8 +14,10 @@ world_news.1 = { #Athenai is conquered
 	trigger = {	
 		NOT = { has_global_variable = global_news_athenai_cooldown }
 		NOT = { tag = ATH }	#Event won't fire for Athenai
+		NOT = {
 		c:ATH = {
 			owns = 416	#Athenai is conquered
+		}
 		}
 	}
 	

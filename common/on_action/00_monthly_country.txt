@@ -21,6 +21,7 @@
 		punic_resurgence.13 # check if state should leave
 		slave_revolts.3
 		me_kush.58
+		world_news.1
 	}
 	
 	random_events = {
