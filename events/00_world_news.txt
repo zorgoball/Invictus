@@ -1,7 +1,7 @@
 ﻿namespace = world_news
 
 ##These events should all be added to the Yearly on_action in the same place as the dhe_roman_warm_period.1 event.
-world_news.1 = { #First World News Event
+world_news.1 = { #Athenai is conquered
 	type = province_event
 	
 	picture = greek_city_market
@@ -11,24 +11,25 @@ world_news.1 = { #First World News Event
 	
 	left_portrait = current_ruler
 	
-	trigger = {	#Trigger Field. What makes the event fire.
-		current_date > 550.1.1 #Change this date
-		NOT = { has_global_variable = world_news_cooldown_variable }
-	}
-	
-	immediate = {	##Immediate Field. Stuff that happens as soon as the event fires.
-		set_global_variable = {
-		name = world_news_cooldown_variable
+	trigger = {	
+		NOT = { has_global_variable = global_news_athenai_cooldown }
+		NOT = { tag = ATH }	#Event won't fire for Athenai
+		c:ATH = {
+			owns = 416	#Athenai is conquered
 		}
 	}
 	
-	option = {	#Option Field. Shows the player option.
+	immediate = {	
+		set_global_variable = {
+		name =  global_news_athenai_cooldown 
+		}
+	}
+	
+	option = {	
 		name = "world_news.1.a"
 		##Flavor Text Only
 	}
-	after = {	#After Field. What happens after option is clicked. (probably not needed here)
-
-	}
+	
 }
 world_news.2 = { #Rome owns Carthage.
 	type = province_event
@@ -63,6 +64,7 @@ world_news.2 = { #Rome owns Carthage.
 
 	}	
 }
+
 ##Add More Events with a similar template to this first event.
 ##They don't all have to only be flavor text you could also add Modifiers to certain provinces or something else.
 ##Ideas for World News Events(definetely not stolen from rome total war I swear):
