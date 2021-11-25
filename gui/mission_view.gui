@@ -5,7 +5,7 @@ base_window = {
 	{
 		gfxtype = linegfx
 		width = 4
-		
+
 		animation_speed = { 0.15 0 }
 		uv_scale = { 1.0 1.0 }
 		texture = "gfx/interface/missions/arrow_texture.dds"
@@ -16,11 +16,13 @@ base_window = {
 	name = "mission_view"
 	parentanchor = top|left
 	size = { 640 900 }
+	minimumsize = { 640 900 }
 	widgetanchor = top|left
 	movable = no
 	using = main_window_template
 	using = FadeStates
 	using = advice_trigger_highlights
+	resizable = yes
 	### Audio ###
 	state = {
 		name = _show
@@ -34,12 +36,26 @@ base_window = {
 			soundeffect = "event:/SFX/UI/Generic/2.0/sfx_ui_window_tab_close"
 		}
 	}
+
+	state = {
+		name = expand_missions
+		size = { 1200 900 }
+		position = { 60 138 }
+		trigger_when = "[GetVariableSystem.Exists('expand_missions')]"
+	}
+
+	state = {
+		trigger_when = "[Not(GetVariableSystem.Exists('expand_missions'))]"
+		name = minimize_missions
+		size = { 640 900 }
+		position = { 60 138 }
+	}
 	### TODO THIS TOGGLE DOES NOT WORK (because of above stated FadeStates?)
 	#state = {
 	#	name = _hide
 	#	on_start = "[PdxGuiTriggerAllAnimations('missions_view_closed')]"
 	#}
-	
+
 	vbox = {
 		using = MainWindowHeaderBox
 
@@ -62,40 +78,52 @@ base_window = {
 		{
 			text = "MISSION_MENU_HEADER"
 		}
-		blockoverride "White_buttons" 
+		blockoverride "White_buttons"
 		{
 			button_back = {
 				shortcut = "previous_window"
 				onclick = "[MissionView.OnPrevious]"
 				tooltip = "PREVIOUS_MISSION_VIEW"
 			}
-			
+
+			button_slide_out = {
+				visible = "[Not(GetVariableSystem.Exists('expand_missions'))]"
+				onclick = "[GetVariableSystem.Toggle('expand_missions')]"
+				tooltip = "expand_missions"
+			}
+
+			button_slide_in = {
+				tooltip = "resize_missions"
+				visible = "[GetVariableSystem.Exists('expand_missions')]"
+				onclick = "[GetVariableSystem.Toggle('expand_missions')]"
+			}
+
 			button_close = {
 				onclick = "[MissionView.OnClose]"
 				tooltip = "CLOSE"
 				shortcut = "close_window"
 			}
 		}
-		
+
 		vbox = {
 			layoutpolicy_vertical = expanding
 			layoutpolicy_horizontal = expanding
-			
+
 			vbox = {
 				visible = "[MissionView.IsActiveMissionVisible]"
 				enabled = "[MissionView.IsWindowEnabled]"
-				
+
 				datacontext = "[MissionView.GetActiveMission]"
-				
+
 				layoutpolicy_vertical = expanding
 				layoutpolicy_horizontal = expanding
-				
+
 				icon = {
 					texture = "[MissionView.GetHeaderImage]"
 					size = { 634 122 }
 					tooltip = "[MissionItem.GetImageTooltip]"
-					
-					
+
+
 					icon = {
 						parentanchor = hcenter|top
 						maximumsize = { 999 28 }
@@ -109,12 +137,12 @@ base_window = {
 							spriteType = Corneredtiled
 							spriteborder = { 60 -10 }
 						}
-						
+
 						blockoverride "Margins"
 						{
 							alpha = 0.95
 						}
-						
+
 						textbox = {
 							position = { 0 0 }
 							using = HeaderFont
@@ -130,11 +158,15 @@ base_window = {
 							margin_right = 30
 							margin_bottom = 3
 						}
-					}		
+					}
 				}
+
 				margin_widget = {
 					size = { 620 640 }
 					using = VerticalScrollAreaCutOff
+					layoutpolicy_horizontal = expanding
+					margin = { 10 0 }
+
 					zoomarea = {
 						name = "graph_zoomarea" # Do not change this name
 						size = { 100% 100% }
@@ -142,12 +174,12 @@ base_window = {
 						draggable_by = middle|left #This can be set to left, middle or right
 						#using = NoninteractableBG
 						blockoverride "EdgeAlpha" {  }
-						blockoverride "Margins" { 
+						blockoverride "Margins" {
 							margin_right = 4
 							margin_left = 4
 							margin_bottom = 7
 						}
-						
+
 						state = {
 						  name = "_zoom_changed"
 						  duration = 0.15
@@ -164,7 +196,7 @@ base_window = {
 								onclick = "[MissionView.ResetZoomAreaPosition]"
 							}
 						}
-						
+
 						scissor = yes
 
 						zoomwidget = {
@@ -176,7 +208,7 @@ base_window = {
 									margin_bottom = 40
 									parentanchor = "top|hcenter"
 									widgetanchor = "top|hcenter"
-									container = { #Line Mech		
+									container = { #Line Mech
 										# These two widgets determine the margin between graph nodes
 										widget = {
 											name = "margin_top_left" # Do not change this name
@@ -192,17 +224,17 @@ base_window = {
 											position = { 1 -38 } # Fixed offset (i.e. to compensate for line width
 											size = { 20 0 } # Spacing between edges
 										}
-										
+
 										# Container for all the edges in the graph
 										container = {
 											name = "line_area" # Do not change this name
-										
+
 											position = { 0 0 }
 											datamodel = "[MissionView.GetLineItems]"
 											item = {
 												container = {
 													position = "[MissionLineItem.GetPosition]"
-								
+
 													line = {
 														using = ArrowLine
 														line_type = BSpline
@@ -212,7 +244,7 @@ base_window = {
 												}
 											}
 										}
-										
+
 										# Container for all the nodes in the graph
 										# Extra container for all the arrow heads on edges
 										container = {
@@ -222,9 +254,9 @@ base_window = {
 												widget = {
 													position = "[MissionLineItem.GetTo]"
 													size = { 32 32 }
-													
+
 													visible = "[Not(MissionLineItem.IsToNodeVirtual)]"
-								
+
 													icon = {
 														name = "arrow_head"
 														position = { -13 -11 }
@@ -235,19 +267,19 @@ base_window = {
 										}
 										container = {
 											name = "node_area" # Do not change this name
-											
+
 											position = { 0 0 }
 											datamodel = "[MissionView.GetTaskItems]"
-											
+
 											item = {
 												widget = {
 													size = { @iconbuttonwidth 120 }
 													widgetid = "[MissionTaskItem.GetKey]"
 													position = "[MissionTaskItem.GetPosition]"
-												
+
 													onmousehierarchyenter = "[MissionTaskItem.OnMouseEnter]"
 													onmousehierarchyleave = "[MissionTaskItem.OnMouseLeave]"
-													
+
 													container = {
 														ignoreinvisible = yes
 														button = {
@@ -256,7 +288,7 @@ base_window = {
 															size = { @iconbuttonwidth 226 }
 															onclick = "[MissionTaskItem.OnClick]"
 															enabled = "[And(Or(MissionTaskItem.IsPossible, MissionTaskItem.IsInProgress), Not(MissionTaskItem.IsCompleted))]"
-															
+
 														}
 														tooltip_offset = { -14 0 }
 														tooltip = "[MissionTaskItem.GetTooltip]"
@@ -269,10 +301,10 @@ base_window = {
 															parentanchor = hcenter
 
 															visible = "[And(And(Not(MissionTaskItem.IsPreventedByHighlightedTask), Not(MissionTaskItem.IsBypassed)), Not(MissionTaskItem.IsPreventedBy)) ]"
-															
+
 															scale = 1
-															
-														}											
+
+														}
 
 														icon = {
 															position = { -10 -60 }
@@ -282,7 +314,7 @@ base_window = {
 															texture = "gfx/interface/icons/mission_tasks/task_unavailable.dds"
 															scale = 1
 														}
-													
+
 														text_button_square_hollow = {
 															position = { 1 58 }
 															size = { @iconbuttonwidth 58 }
@@ -297,7 +329,7 @@ base_window = {
 															{
 																visible = no
 															}
-															
+
 															using = NoninteractableBG
 															blockoverride "Margins"
 															{
@@ -305,24 +337,24 @@ base_window = {
 																margin = { 1 1 }
 																alpha = 0.4
 															}
-															
+
 															icon = {
 																using = highlight_button_task
 																visible = "[And(ShouldHighlight('btn_mission_finish_task'),And(Or(MissionTaskItem.IsPossible,MissionTaskItem.IsInProgress), Not(MissionTaskItem.IsCompleted)))]"
-															}	
-															
+															}
+
 															flowcontainer = {
 																direction = vertical
 																parentanchor = hcenter|vcenter
 																ignoreinvisible = yes
-																																
+
 																container = {
 																	parentanchor = top|hcenter
 																	alpha = "[TransparentIfTrue( MissionTaskItem.IsCompleted )]"
 																	textbox = {
 																		position = { 2 0 }
 																		using = BaseFontS
-													
+
 																		using = Black_FontColor
 																		size = { 106 42 }
 																		text = "[MissionTaskItem.GetText]"
@@ -332,53 +364,53 @@ base_window = {
 																		fontsize_min = 12
 																		align = center|nobaseline
 																	}
-																	
+
 																}
-															
+
 																container = {
 																	tooltip = "[MissionTaskItem.GetProgressTooltip]"
-																	
+
 																	visible = "[And(Not(MissionTaskItem.IsInstant), Not(MissionTaskItem.IsCompleted)))]"
 																	parentanchor = hcenter
 																	fixed_size_progressbar = {
 																		blockoverride "size" { size = { 92 7 } }
 																		blockoverride "Value" { value = "[MissionTaskItem.GetProgress]" }
-																		
+
 																	}
-																	
+
 																	# mission in progress animation
-																	state = {							
+																	state = {
 																		name = "progress_down"
-																	
+
 																		animation = {
 																			alpha = 0.5
 																		}
 																		duration = 0.5
-																		
+
 																		trigger_when = "[MissionTaskItem.IsInProgress]"
 
 																		next = "progress_up"
 																	}
-																
-																	state = {		
+
+																	state = {
 																		name = "progress_up"
-																		
+
 																		animation = {
 																			alpha = 1
 																		}
 																		duration = 1.0
-																		
+
 																		next = "progress_down"
 																	}
-																}													
-															}	
+																}
+															}
 														}
 														icon = {
 															size = { 48 48 }
 															parentanchor = right
 															position = { -2 46 }
 															texture = "gfx/interface/icons/shared_icons/completed_task.dds"
-															visible = "[MissionTaskItem.IsCompleted]"			
+															visible = "[MissionTaskItem.IsCompleted]"
 														}
 														#icon = {
 														#	position = { -5 68 }
@@ -388,7 +420,7 @@ base_window = {
 														#	frame = 2
 														#	texture = "gfx/interface/icons/shared_icons/tick_cross.dds"
 														#	parentanchor = hcenter
-														
+
 														#	visible = "[MissionTaskItem.IsCompleted]"
 														#	scale = 1
 														#	glow = {
@@ -396,52 +428,52 @@ base_window = {
 														#		color = { 1 1 1 1 }
 														#	}
 														#}
-														
+
 														margin_widget = {
 															size = { @iconbuttonwidth @iconbuttonheight }
 															position = { 1 58 }
 															visible = "[MissionTaskItem.IsPreventedByHighlightedTask]"
-															
+
 															margin = { 4 4 }
-															
+
 															icon = {
 																name = "Standard_frame_2"
 																texture = "gfx/interface/base_parts/background_red.dds"
 																size = { 100% 100% }
-															
+
 															}
 															state = {
 																name = _show
 																animation = {
 																	alpha = 0.5
 																}
-																
+
 																next = red_fadeout
 															}
-														
+
 															state = {
 																name = red_fadein
 																animation = {
 																	alpha = 0.5
 																}
-																
+
 																duration = 1
-															
+
 																next = red_fadeout
 															}
-														
+
 															state = {
 																name = red_fadeout
 																animation = {
 																	alpha = 0.1
 																}
-															
+
 																duration = 1
-																
+
 																next = red_fadein
 															}
 														}
-														
+
 													}
 												}
 											}
@@ -461,40 +493,42 @@ base_window = {
 						margin_top = 14
 						margin_bottom = 10
 					}
-					
+
 					text_button_square = {
 						size = { 258 28 }
 						blockoverride "On_click"
 						{
 							onclick = "[MissionItem.OnAbort]"
+							onclick = "[GetVariableSystem.Clear('expand_missions')]"
 							enabled = "[MissionItem.IsAbortAllowed]"
 							tooltip = "[MissionItem.GetAbortTooltip]"
 						}
-						
-						blockoverride "Center_text" 
+
+						blockoverride "Center_text"
 						{
 							text = "MISSION_VIEW_ABORT_MISSION"
 						}
 					}
-					
+
 					text_button_square = {
 						size = { 258 28 }
-						
+
 						blockoverride "On_click"
 						{
+							onclick = "[GetVariableSystem.Clear('expand_missions')]"
 							onclick = "[MissionItem.OnComplete]"
 							enabled = "[MissionItem.IsCompleteAllowed]"
 							tooltip = "[MissionItem.GetCompleteTooltip]"
 						}
-						
-						blockoverride "Center_text" 
+
+						blockoverride "Center_text"
 						{
 							text = "MISSION_VIEW_COMPLETE_MISSION"
 						}
 					}
 				}
 			}
-			
+
 			vbox = {
 				visible = "[MissionView.IsMissionSelectionVisible]"
 				layoutpolicy_vertical = expanding
@@ -512,27 +546,27 @@ base_window = {
 
 						layoutpolicy_vertical = expanding
 						scrollbarpolicy_horizontal = always_off
-						
+
 						scrollbar_vertical = {
 							using = VerticalScrollBar
 						}
-						
+
 						scrollwidget = {
 							fixedgridbox = {
 								addcolumn = 270
 								addrow = 124
 								maxhorizontalslots = 1
 								position = { 9 4 }
-								
+
 								datamodel = "[MissionView.GetAvailableMissions]"
-								
+
 								item = {
 									mission_button = {}
 								}
 							}
 						}
 					}
-					
+
 					vbox = {
 						datacontext = "[MissionView.GetSelectedMission]"
 						margin_right = 14
@@ -541,7 +575,7 @@ base_window = {
 							size = { 320 620 }
 							scrollbarpolicy_horizontal = always_off
 							using = NoninteractableBG
-							
+
 							blockoverride "Margins"
 							{
 								margin_bottom = 0
@@ -549,15 +583,15 @@ base_window = {
 								margin_right = 10
 								margin_top = 6
 							}
-							
+
 							scrollbar_vertical = {
 								using = VerticalScrollBar
 							}
-							
+
 							scrollwidget = {
 								flowcontainer = {
 									margin = { 6 10 }
-									
+
 									direction = vertical
 									spacing = 12
 									container = {
@@ -570,11 +604,11 @@ base_window = {
 											align = left|top
 											elide = right
 											text = "[MissionItem.GetTitle]"
-											
+
 											minimumsize = { 310 -1 }
 											maximumsize = { 310 -1 }
 										}
-										
+
 										textbox = {
 											position = { 0 30 }
 											using = BaseFontS
@@ -584,12 +618,12 @@ base_window = {
 											align = left|top
 											multiline = yes
 											text = "[MissionItem.GetDescription]"
-											
+
 											minimumsize = { 310 -1 }
 											maximumsize = { 310 -1 }
 										}
 									}
-									
+
 									container = {
 										textbox = {
 											position = { 0 0 }
@@ -604,7 +638,7 @@ base_window = {
 											minimumsize = { 310 -1 }
 											maximumsize = { 310 -1 }
 										}
-										
+
 										textbox = {
 											position = { 0 26 }
 											using = BaseFontS
@@ -614,7 +648,7 @@ base_window = {
 											align = left|top
 											multiline = yes
 											text = "[MissionItem.GetCompletionCriteriaDescription]"
-											
+
 											minimumsize = { 310 -1 }
 											maximumsize = { 310 -1 }
 										}
@@ -626,7 +660,7 @@ base_window = {
 							layoutpolicy_vertical = expanding
 							text_button_square = {
 								size = { 304 28 }
-								
+
 								blockoverride "On_click"
 								{
 									onclick = "[MissionItem.OnStart]"
@@ -634,23 +668,23 @@ base_window = {
 									tooltip = "[MissionItem.GetStartTooltip]"
 									clicksound = "event:/SFX/UI/Missions/sfx_ui_mission_accept"
 								}
-								
+
 								blockoverride "Center_text" {
 									text = "MISSION_VIEW_START_MISSION"
 								}
 							}
 							margin_bottom = 12
-						}							
+						}
 					}
-					
+
 				}
 
 			}
-			
+
 		}
-		
+
 	}
-	
-	
+
+
 
 }

@@ -33,27 +33,28 @@ ach.3 = {
 	title = "indo_greek_ach_unlocked"
 	desc = "indo_greek_ach_unlocked_desc"
 
-	#TODO this event needs to be triggered from the mission tree!
+	#TODO this event needs to be triggered from the mission tree
 
 	option = {
 		name = "CONFIRM"
 	}
 }
 
-
-ach.4 = {
-	type = minor_country_event
-	title = "midas_touch_ach_unlocked"
-	desc = "midas_touch_ach_unlocked_desc"
-
-	immediate = {
-		set_variable = ach_midas_touch
-	}
-
-	option = {
-		name = "CONFIRM"
-	}
-}
+# currenly I don't fire an event for a manually checked achievement
+# keeping it in case we change it
+# ach.4 = {
+# 	type = minor_country_event
+# 	title = "midas_touch_ach_unlocked"
+# 	desc = "midas_touch_ach_unlocked_desc"
+#
+# 	immediate = {
+# 		set_variable = ach_midas_touch
+# 	}
+#
+# 	option = {
+# 		name = "CONFIRM"
+# 	}
+# }
 
 ach.5 = {
 	type = minor_country_event
@@ -69,6 +70,75 @@ ach.5 = {
 	}
 }
 
+ach.6 = {
+	type = minor_country_event
+	title = "32_dynasty"
+	desc = "32_dynasty_unlocked_desc"
+
+	immediate = {
+		set_variable = ach_32_dynasty
+	}
+
+	option = {
+		name = "CONFIRM"
+	}
+}
+
+ach.7 = {
+	type = minor_country_event
+	title = "kingdom_of_david_unlocked"
+	desc = "kingdom_of_david_unlocked_desc"
+
+	immediate = {
+		set_variable = ach_kingdom_of_david
+	}
+
+	option = {
+		name = "CONFIRM"
+	}
+}
+
+# ach.8 = {
+# 	type = minor_country_event
+# 	title = "ach_pontic_league"
+# 	desc = "ach_pontic_league_desc"
+#
+# 	immediate = {
+# 		set_variable = ach_pontic_league
+# 	}
+#
+# 	option = {
+# 		name = "CONFIRM"
+# 	}
+# }
+
+ach.9 = {
+	type = minor_country_event
+	title = "ach_greekaboos_unlocked"
+	desc = "ach_greekaboos_unlocked_desc"
+
+	immediate = {
+		set_variable = ach_greekaboos
+	}
+
+	option = {
+		name = "CONFIRM"
+	}
+}
+
+ach.10 = {
+	type = minor_country_event
+	title = "ach_diamonds_unlocked"
+	desc = "ach_diamonds_unlocked_desc"
+
+	immediate = {
+		set_variable = ach_diamonds
+	}
+
+	option = {
+		name = "CONFIRM"
+	}
+}
 
 ach.100 = {
 	type = minor_country_event
@@ -81,5 +151,28 @@ ach.100 = {
 
 	option = {
 		name = "CONFIRM"
+	}
+}
+
+#for testing
+
+ach.200 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		every_province = {
+			limit = {
+				OR = {
+					is_in_region = asia_region
+					is_in_region = cilicia_region
+					is_in_region = galatia_region
+					is_in_region = bithynia_region
+					is_in_region = cappadocia_region
+					is_in_region = cappadocia_pontica_region
+				}
+			}
+			set_owned_by = root
+		}
 	}
 }

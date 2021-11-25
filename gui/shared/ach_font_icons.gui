@@ -29,9 +29,9 @@ texticon = {
 }
 
 texticon = {
-    icon = ach_midas
+    icon = ach_ark
     iconsize = {
-        texture = "gfx/interface/icons/achievements/ach_gazophylax.dds"
+        texture = "gfx/interface/icons/achievements/ach_ark.dds"
         size = { 50 50 }
         offset = { 0 27 }
         fontsize = 10
@@ -39,9 +39,39 @@ texticon = {
 }
 
 texticon = {
-    icon = ach_ark
+    icon = ach_kingdom_of_david
     iconsize = {
         texture = "gfx/interface/icons/achievements/ach_kingdom_of_david.dds"
+        size = { 50 50 }
+        offset = { 0 27 }
+        fontsize = 10
+    }
+}
+
+texticon = {
+    icon = ach_32_dynasty
+    iconsize = {
+        texture = "gfx/interface/icons/achievements/ach_wonder_builder.dds"
+        size = { 50 50 }
+        offset = { 0 27 }
+        fontsize = 10
+    }
+}
+
+texticon = {
+    icon = ach_greekaboos
+    iconsize = {
+        texture = "gfx/interface/icons/achievements/ach_panem_et_circenses.dds"
+        size = { 50 50 }
+        offset = { 0 27 }
+        fontsize = 10
+    }
+}
+
+texticon = {
+    icon = ach_diamonds
+    iconsize = {
+        texture = "gfx/interface/icons/achievements/ach_diamonds.dds"
         size = { 50 50 }
         offset = { 0 27 }
         fontsize = 10

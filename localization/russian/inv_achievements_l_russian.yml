@@ -1,7 +1,7 @@
 ﻿l_russian:
  all_achievements: "All achievements"
  unlocked_achievements: "Unlocked"
- possible_achievements: "Locked"
+ possible_achievements: "Available"
  impossible_achievements: "Not possible"
  ach_impossible: "$ACHIEVEMENT_NOT_POSSIBLE$\n[ScriptedGui.BuildTooltip( GuiScope.SetRoot( Player.MakeScope ).End )]"
  vanilla_ach: "Show vanilla achievements"
@@ -9,10 +9,15 @@
  lorem_ipsum: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
  achievement_unlock: "Achievement: "
- achievement_unlock_desc: "You've unlocked a new achievement!\n\n\n"
+ achievement_unlock_desc: "#huge You've unlocked a new achievement!\n\n\n"
 
  ### ACHIEVEMENTS ###
  # event description uses a texticon to show the achievement picture, please set yours in gui/shared/ach_font_icons.gui
+
+ TEMPLATE: ""
+ TEMPLATE_desc: ""
+ TEMPLATE_unlocked: "$achievement_unlock$$TEMPLATE$"
+ TEMPLATE_unlocked_desc: "$achievement_unlock_desc$@ach_TEMPLATE!\n#bold $TEMPLATE$#!\n$TEMPLATE_desc$"
 
  settled_matter: "Settled Matter"
  settled_matter_desc: "Settle an enemy territory during war as a Migratory Tribe"
@@ -25,22 +30,45 @@
  child_play_unlocked_desc: "$achievement_unlock_desc$@ach_childs_play!\n#bold $child_play$#!\n$child_play_desc$"
  child_play_tt: "Commander must be no older than 15 years old\n#tf Tip: this is possible with a child ruler"
 
- indo_greek_ach: "Yavanarajya"
+ indo_greek_ach: "Yavanarajya #debug TODO#!"
  indo_greek_ach_desc: "Form the Indo-Greek Kingdom"
  indo_greek_ach_unlocked: "$achievement_unlock$$indo_greek_ach$"
  indo_greek_ach_unlocked_desc: "$achievement_unlock_desc$@ach_rednaxela!\n#bold $indo_greek_ach$#!\n$indo_greek_ach_desc$"
 
  midas_touch_ach: "Midas Touch"
  midas_touch_ach_desc: "Produce or import at least 10 Precious Metals in your capital province"
- midas_touch_ach_unlocked: "$achievement_unlock$$midas_touch_ach$"
- midas_touch_ach_unlocked_desc: "$achievement_unlock_desc$@ach_midas!\n#bold $midas_touch_ach$#!\n$midas_touch_ach_desc$"
+ # doesn't have an event
+
+ 32_dynasty: "The 32nd Dynasty"
+ 32_dynasty_desc: "Starting as Kush, form Egypt" #anything more specific?
+ 32_dynasty_unlocked: "$achievement_unlock$$32_dynasty$"
+ 32_dynasty_unlocked_desc: "$achievement_unlock_desc$@ach_32_dynasty!\n#bold $32_dynasty$#!\n$32_dynasty_desc$"
+
+ kingdom_of_david: "$ACHIEVEMENT_ach_kingdom_of_david$"
+ kingdom_of_david_desc: "Starting as Judea or Samaria, form the Kingdom of David"
+ kingdom_of_david_unlocked: "$achievement_unlock$$kingdom_of_david$"
+ kingdom_of_david_unlocked_desc: "$achievement_unlock_desc$@ach_kingdom_of_david!\n#bold $kingdom_of_david$#!\n$kingdom_of_david_desc$"
+
+ ach_pontic_league: "Pontic League of Their Own"
+ ach_pontic_league_desc: "Starting as one of the Black Sea republics, form the Pontic League and own all of Anatolia"
+ black_sea_republic: "Has a port on the Black Sea"
+ is_PTL: "Is #v Pontic League#!"
+
+ # personally, not a fan of the name
+ ach_greekaboos: "Greekaboos #debug TODO#!"
+ ach_greekaboos_desc: "Host the Euxinus Games as Scythia"
+ ach_greekaboos_unlocked: "$achievement_unlock$$ach_greekaboos$"
+ ach_greekaboos_unlocked_desc: "$achievement_unlock_desc$@ach_greekaboos!\n#bold $ach_greekaboos$#!\n$ach_greekaboos_desc$"
 
  ark_ach: "Ark of the Covenant"
  ark_ach_desc: "Starting as Judea or Samaria, find the Ark of the Covenant"
  ark_ach_unlocked: "$achievement_unlock$$ark_ach$"
  ark_ach_unlocked_desc: "$achievement_unlock_desc$@ach_ark!\n#bold $ark_ach$#!\n$ark_ach_desc$"
 
-
+ ach_diamonds: "Diamond in the Rough #debug TODO#!"
+ ach_diamonds_desc: "Produce Gems in the territory of Limnaioi"
+ ach_diamonds_unlocked: "$achievement_unlock$$ach_diamonds$"
+ ach_diamonds_unlocked_desc: "$achievement_unlock_desc$@ach_diamonds!\n#bold $ach_diamonds$#!\n$ach_diamonds_desc$"
 
 
  ach_test: "#debug TEST: Lambert's Paradise#!"

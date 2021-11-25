@@ -707,6 +707,11 @@ judea_inv.10 = { #Finishing event for forming the Kingdom of David
 		}
 	}
 
+	#achievement trigger
+	after = {
+		trigger_event = ach.7
+	}
+
 	option = {
 		name = judea_inv.10.a
 		hidden_effect = {

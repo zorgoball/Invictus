@@ -1,0 +1,4 @@
+﻿l_english:
+ expand_missions: "#t Expand#!\n$resize_window$"
+ resize_missions: "#t Restore#!\n$resize_window$"
+ resize_window: "#tf You can also resize the window manually by dragging its edges"
