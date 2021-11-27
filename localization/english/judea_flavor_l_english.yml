@@ -371,3 +371,15 @@
  judea_inv.51.t:0 "A Cloud of Smoke" #FT33
  judea_inv.51.desc:0 "Few do not share our love of the smell burning incense emits. Few do not love watching the writhing trail of the smoke curl as it meets the warm air. We need more of it, and we need it stronger. Luckily, we know how to achieve this, drying it out, extending the life of each batch so that we can savor it for longer, before needing more."
  judea_inv.51.a:0 "That glorious smell."
+
+ #Laws
+ judea_conversion_laws:0 "Religious Laws"
+ judea_conversion_laws_desc:0 "Religious laws for the #Y[ROOT.GetCountry.GetPrimaryCulture.GetName] #! states." #to do lol
+ ethnarchy:0 "Ethnarchy"
+ ethnarchy_desc:0 "An Ethnarch is the leader of a people."
+ noachian_laws:0 "Noarchian Laws"
+ noachian_laws_desc:0 "The seven Laws of Noah are to be followed by all Gentiles, lest they threaten their place in the future world."
+ conversion_of_gentiles:0 "Conversion of the Gentiles"
+ conversion_of_gentiles_desc:0 "In the name of the Lord, the Gentiles are to convert by command of our [ROOT.GetCountry.GetRulerTitle] [ROOT.GetCountry.GetRuler.GetPraenomen]."
+ henotheism:0 "Henotheism"
+ henotheism_desc:0 "While our Lord is the sole true God of the [ROOT.GetCountry.GetReligion.GetName]s, there might be other deities. Their worship is allowed, but only for non-[ROOT.GetCountry.GetAdjective]s and the worship of our Lord is limited to [ROOT.GetCountry.GetAdjective]s."
