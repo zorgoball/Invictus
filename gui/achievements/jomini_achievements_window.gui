@@ -341,20 +341,6 @@ types achievementsTypes {
 				visible = "[Not(GetVariableSystem.Exists('medium_ach'))]"
 				margin_top = 5
 			}
-
-			#TODO add a go-to button?
-			achievement = { # diamonds
-				datacontext = "[GetScriptedGui('ach_diamonds')]"
-				blockoverride "icon" {
-					texture = "gfx/interface/icons/achievements/ach_diamonds.dds"
-				}
-				blockoverride "name" {
-					text = "ach_diamonds"
-				}
-				blockoverride "desc" {
-					text = "ach_diamonds_desc"
-				}
-			}
 		}
 
 		flowcontainer = {
@@ -427,6 +413,20 @@ types achievementsTypes {
 					}
 					blockoverride "desc" {
 						text = "kingdom_of_david_desc"
+					}
+				}
+
+				#TODO add a go-to button?
+				achievement = { # diamonds
+					datacontext = "[GetScriptedGui('ach_diamonds')]"
+					blockoverride "icon" {
+						texture = "gfx/interface/icons/achievements/ach_diamonds.dds"
+					}
+					blockoverride "name" {
+						text = "ach_diamonds"
+					}
+					blockoverride "desc" {
+						text = "ach_diamonds_desc"
 					}
 				}
 

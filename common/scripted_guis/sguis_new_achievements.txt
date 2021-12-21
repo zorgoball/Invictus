@@ -68,10 +68,15 @@ ach_ark = {
 	}
 
 	is_valid = {
-		OR = {
-            tag = JUD
-            tag = SMA
-        }
+		trigger_if = {
+			limit = {
+				NOT = { tag = ISR }
+			}
+			OR = {
+				tag = JUD
+				tag = SMA
+			}
+		}
 	}
 }
 
@@ -83,10 +88,15 @@ ach_kingdom_of_david = {
 	}
 
 	is_valid = {
-		OR = {
-            tag = JUD
-            tag = SMA
-        }
+		trigger_if = {
+			limit = {
+				NOT = { tag = ISR }
+			}
+			OR = {
+				tag = JUD
+				tag = SMA
+			}
+		}
 	}
 }
 
