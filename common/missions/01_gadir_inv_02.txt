@@ -39,6 +39,196 @@
 		}
     }
 
-    
+    gadir_inv_mission_02_task_1 = { 
+        icon = "task_expansion"
 
+        allow = {
+            region:baetica_region = {
+                NOT = {
+                    any_region_province = {
+                        OR = {
+                            owner = c:CAR
+                            owner = {
+                                is_subject_of = c:CAR
+                            }
+                        }
+                    }
+                }
+            }
+            NOT = {
+                c:CAR = {
+                    owns_or_subject_owns_area = mauretania_tingitana_meridionalis_area 
+                    owns_or_subject_owns_area = mauretania_tingitana_septentrionalis_area
+                    owns_or_subject_owns_area = rutubis_area 
+                    owns_or_subject_owns_area = tadla_area
+                }
+            }
+
+            p:3080 = {
+                owned_or_subject_owned = root
+            }
+            p:3061 = {
+                owned_or_subject_owned = root
+            }
+            p:6490 = {
+                owned_or_subject_owned = root
+            }
+            p:6301 = {
+                owned_or_subject_owned = root
+            }
+        }
+
+        on_completion = { 
+            
+            trigger_event = {
+                id = gadir_inv.50
+                days = -1
+            }
+        }
+    }
+
+    gadir_inv_mission_02_task_2 = { #Mauretania
+        icon = "task_diplomatic"
+
+        requires = { gadir_inv_mission_02_task_1 }
+
+        allow = {
+            OR = {
+                c:MAU = {
+                    alliance_with = root
+                    opinion = {
+                        target = root
+                        value >= 120
+                    }
+                }
+                owns_or_subject_owns_area = mauretania_tingitana_meridionalis_area 
+                owns_or_subject_owns_area = mauretania_tingitana_septentrionalis_area
+            }
+        }
+
+        on_completion = {
+            trigger_event = { #make Mauretania a vassal OR get a bonus if you won the territory
+                id = gadir_inv.51
+                days = -1
+            }
+        }
+    }
+
+    gadir_inv_mission_02_task_3 = { #Massaesylia
+        icon = "task_diplomatic"
+
+        requires = { gadir_inv_mission_02_task_1 }
+
+        allow = {
+            OR = {
+                c:MSS = {
+                    alliance_with = root
+                    opinion = {
+                        target = root
+                        value >= 120
+                    }
+                }
+                owns_or_subject_owns_area = mauretania_caesariensis_occidentalis_area 
+                owns_or_subject_owns_area = mauretania_caesariensis_centralis_area
+            }
+        }
+
+        on_completion = {
+            trigger_event = { #make Massaessylia vassal OR get a bonus if you won the territory
+                id = gadir_inv.52
+                days = -1
+            }
+        }
+    }
+
+    gadir_inv_mission_02_task_4 = {
+        icon = "task_conquest"
+
+        requires = { gadir_inv_mission_02_task_3 gadir_inv_mission_02_task_2 }
+
+        allow = {
+            region:mauretainia_region = {
+                NOT = {
+                    any_region_province = {
+                        OR = {
+                            owner = c:CAR
+                            owner = {
+                                is_subject_of = c:CAR
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        on_completion = {
+            region:numidia_region = {
+                every_region_province = {
+                    limit = {
+                        owned_or_subject_owned = c:CAR
+                    }
+                    add_claim = root
+                }
+            }
+        }
+    }
+
+    gadir_inv_mission_02_task_5 = { #iol
+        icon = "task_political"
+
+        requires = { gadir_inv_mission_02_task_3 }
+
+        highlight = {
+            scope:province = {
+                OR = {
+                    province_id = 3116
+                    province_id = 3118
+                }
+            }
+        }
+
+        allow = {
+            c:IOL = {
+                opinion = {
+                    target = root
+                    value >= 120
+                }
+            }
+        }
+
+        on_completion = {
+            trigger_event = {
+                id = gadir_inv.53
+                days = -1
+            }
+        }
+    }
+
+    gadir_inv_mission_02_task_6 = { #ibasim
+        icon = "task_political"
+
+        requires = { gadir_inv_mission_02_task_2 }
+
+        highlight = {
+            scope:province = {
+                province_id = 1464
+            }
+        }
+
+        allow = {
+            c:IBA = {
+                opinion = {
+                    target = root
+                    value >= 120
+                }
+            }
+        }
+
+        on_completion = {
+            trigger_event = {
+                id = gadir_inv.55
+                days = -1
+            }
+        }
+    }
 }
