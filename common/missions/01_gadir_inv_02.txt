@@ -1,0 +1,44 @@
+﻿gadir_inv_mission_02 = {
+    header = "mission_image_carthage"
+    icon = "carthage_4"
+    repeatable = no
+
+    chance = {
+        factor = 10
+    }
+
+    potential = {
+        tag = GAD
+        NOT = { has_variable = gadir_02_mission_cooldown }
+    }
+
+    abort = {
+        OR = {
+            is_subject = yes
+            ai_mission_back_out_trigger = yes
+        }
+    }
+
+    on_abort = {
+        custom_tooltip = gadir_01_mission_abortion.tt
+        set_variable = { 
+            name = gadir_02_mission_cooldown
+            days = 7300 #20 yrs
+        }
+    }
+    
+    on_start = {
+        save_scope_as = mission_country_scope
+    }
+
+    on_completion = {
+        complete_mission_effect = yes
+        capital_scope = {
+			capital_formable_small_effect = yes
+            add_2_free_province_investments = yes
+		}
+    }
+
+    
+
+}
