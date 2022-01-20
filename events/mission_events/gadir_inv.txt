@@ -2600,3 +2600,14 @@ gadir_inv.48 = { #task 22 flavour
 		name = gadir_inv.48.a
 	}
 }
+
+
+####Start 2nd Mission tree here; the first event will start with .50 so that there is room for an event below if needed
+
+#gadir_inv.50 = {} #task 1 Choice militaristic or diplomatic expansion into Mauretania proper
+#gadir_inv.51 = {} #task 2 Mauretania - follow up also include Ibasim "interested" in defecting
+#gadir_inv.52 = {} #task 3 Massaessylia - follow up also include Iol "interested" in defecting
+#gadir_inv.53 = {} #task 5 asking Iol to defect
+#gadir_inv.54 = {} #task 5 asking Iol to defect - answer
+#gadir_inv.55 = {} #task 6 asking Ibasim to defect
+#gadir_inv.56 = {} #task 6 asking Ibasim to defect - answer
