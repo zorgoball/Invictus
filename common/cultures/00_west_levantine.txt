@@ -48,6 +48,8 @@
 		Eugarid.Eugarid.Eugarid.Eugarid
 		Mashhid.Mashhid.Mashhid.Mashhid
 		Ummashid.Ummashid.Ummashid.Ummashid
+		Balbo.Balbo.Balbid.Balbid
+		Chalia.Chalia.Chalid.Chalid
 	}
 	culture = {
 		carthaginian = { levy_template = levy_punic }

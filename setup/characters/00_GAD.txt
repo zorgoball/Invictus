@@ -1,0 +1,44 @@
+﻿"GAD"={
+	country="GAD"
+	471={
+		first_name="Hanno"
+		family = c:GAD.fam:Chalid
+		birth_date=414.8.12
+		culture="carthaginian"
+		religion="carthaginian_pantheon"
+		no_stats=yes
+		add_martial=4
+		add_charisma=8
+		add_finesse=6
+		add_zeal=5
+		no_traits=yes
+		add_trait="sceptical"
+		add_trait="proud"
+		add_gold=350
+		add_popularity=30
+		c:GAD={
+			set_as_ruler=char:471
+		}
+	}
+	472={
+		first_name="Bodmelqart"
+		family = c:GAD.fam:Balbid
+		birth_date=416.4.20
+		culture="carthaginian"
+		religion="carthaginian_pantheon"
+		no_stats=yes
+		add_martial=5
+		add_charisma=7
+		add_finesse=4
+		add_zeal=8
+		no_traits=yes
+		add_trait="trusting"
+		add_trait="cautious"
+		add_trait="devout"
+		add_gold=300
+		add_popularity=60
+		c:GAD={
+			set_as_coruler=char:472
+		}
+	}
+}

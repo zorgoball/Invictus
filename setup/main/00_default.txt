@@ -2604,6 +2604,21 @@ family={
 			culture=cretan
 			owner=ARS
 		}
+		#Gadir
+		150 = {
+			key = "Balbid"
+			prestige=300
+			culture=carthaginian
+			owner=GAD
+			color = 0
+		}
+		151 = {
+			key = "Chalid"
+			prestige=300
+			culture=carthaginian
+			owner=GAD
+			color = 1
+		}
 		#Chera Dynasty
 		250={
 			key = "Chera"
@@ -2912,10 +2927,9 @@ diplomacy = {
 	#Astan
 	dependency = { first = ASA second = LSC subject_type = tributary }
 	
-	#Asta, Gadir and Onuba
+	#Asta and Onuba
 	defensive_league = {
 		member = ASA
-		member = GAD
 		member = ONU
 	}
 	
@@ -2923,6 +2937,14 @@ diplomacy = {
 	defensive_league = {
 		member = CRM
 		member = CIP
+	}
+	
+	#Gadiran Leage
+	defensive_league = {
+		member = GAD
+		member = LIX
+		member = KUS
+		member = RSS
 	}
 	
 	#Germania
@@ -3597,7 +3619,6 @@ provinces = { #Any entry must contain a comment with city name.
 	}
 	
 	1029 = { #arse/saguntum
-		fortress_building = 1
 		commerce_building = 1
 	}
 	
@@ -3606,29 +3627,14 @@ provinces = { #Any entry must contain a comment with city name.
 	}
 	
 	1339 = { #onuba
-		fortress_building = 1
 		commerce_building = 1
 	}
 	
 	1342 = { #asta regia
-		fortress_building = 1
-		commerce_building = 2
-	}
-	
-	1346 = { #asido/lascuta
-		fortress_building = 1 
-	}
-	
-	1348 = { #carteia
-		fortress_building = 1 
-	}
-	
-	1350 = { #acinipo
-		fortress_building = 1
 		commerce_building = 1
 	}
 	
-	1356 = { #orippo
+	1348 = { #carteia
 		fortress_building = 1 
 	}
 	
@@ -3637,17 +3643,10 @@ provinces = { #Any entry must contain a comment with city name.
 	}
 	
 	1374 = { #carmo
-		fortress_building = 1
-		commerce_building = 1
-	}
-	
-	1377 = { #corduba
-		fortress_building = 1
 		commerce_building = 1
 	}
 	
 	1464 = { #ebusus/ibasim
-		fortress_building = 1
 		commerce_building = 1
 	}
 	
@@ -6652,7 +6651,7 @@ country = {
 		# Misc
 	
 		UTC = { #Utica
-			government = oligarchic_republic
+			government = plutocratic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
 			diplomatic_stance=trading_stance
@@ -6672,7 +6671,7 @@ country = {
 		}
 		
 		TPS = { #Thapsus
-			government = oligarchic_republic
+			government = plutocratic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
 			diplomatic_stance=trading_stance
@@ -6692,7 +6691,7 @@ country = {
 		}
 	
 		LPT = { #Leptis Minor
-			government = oligarchic_republic
+			government = plutocratic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
 			capital = 3277 #Leptis Minor
@@ -6712,7 +6711,7 @@ country = {
 		}
 		
 		HDR = { #Hadrametum
-			government = oligarchic_republic
+			government = plutocratic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
 			capital = 3276 #Hadrametum
@@ -6732,7 +6731,7 @@ country = {
 		}
 		
 		ACO = { #Achola
-			government = oligarchic_republic
+			government = plutocratic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
 			capital = 3280 #Achola
@@ -6795,7 +6794,7 @@ country = {
 		}
 		
 		IOL = { #Iol
-			government = oligarchic_republic
+			government = plutocratic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
 			diplomatic_stance=trading_stance
@@ -6816,7 +6815,7 @@ country = {
 		
 		
 		KUA = { #Kerkuane
-			government = oligarchic_republic
+			government = plutocratic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
 			diplomatic_stance=trading_stance
@@ -6874,14 +6873,14 @@ country = {
 				3245 3244 3249 3270 3241 3240 3242 3243 3272 3274 3275
 				3279 3286 3282 3281 3283 3287 3285 1470
 				3483 3481 3484 3485 3490 3482 3492
-				3061 3085 3064 3062 3065 3066 3063 3068 3080 3262 3230 3229 3264 3265 3267 3271
+				3061 3085 3066 3063 3068 3262 3230 3229 3264 3265 3267 3271
 				3225 3226 3227 3126 3123 3122 3121 3144
 				3161 3160 3150 3145 3238 3212 3273 3236 3200 3239 3211
 				3124
 				3486 3504 3497 3494 3493 3108 #removed and given to Nuragic: 3505 3506 3499 3500 3503 3488 3487 3489
 				1471 # Melita (Malta)
 				1362 1366 1367 1283 1282 1278 1276 1284 #Malaca
-				1347 1348 #Carteia
+				1347 #Alu
 				3092 3095 3120 6301 6478 6490 #More North African Ports
 				7841 7842 7843    
 			}
@@ -8234,6 +8233,8 @@ country = {
 		}
 		
 		GAD = {
+			family = 150
+			family = 151
 			government = punic_republic
 			primary_culture = carthaginian
 			religion = carthaginian_pantheon
@@ -8257,7 +8258,7 @@ country = {
 			}
 			
 			own_control_core = 	{
-				1344 1345
+				1334 1344 1345 1348
 			}
 			
 		}
@@ -9579,7 +9580,7 @@ country = {
 			capital = 1337 
 
 			own_control_core = 	{
-				1337 1334 1333 1336 1330 1324
+				1337 1333 1336 1330 1324
 			}
 		}
 		
@@ -16149,6 +16150,44 @@ country = {
 
 			own_control_core = 	{
 				1346
+			}
+		}
+		
+		# New Mauretanian/Punic Tags
+		
+		LIX = {
+			government = plutocratic_republic
+			primary_culture = carthaginian
+			religion = carthaginian_pantheon
+			
+			capital = 3062
+			
+			own_control_core = {
+				3062 3065
+			}
+		}
+		
+		KUS = {
+			government = plutocratic_republic
+			primary_culture = carthaginian
+			religion = carthaginian_pantheon
+			
+			capital = 3064
+			
+			own_control_core = {
+				3064
+			}
+		}
+		
+		RSS = {
+			government = plutocratic_republic
+			primary_culture = carthaginian
+			religion = carthaginian_pantheon
+			
+			capital = 3080
+			
+			own_control_core = {
+				3080
 			}
 		}
 		

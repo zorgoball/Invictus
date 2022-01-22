@@ -540,9 +540,9 @@
 1346=
 {
 	barbarian_power=0
-	civilization_value=19
+	civilization_value=15
 	culture="turdetanian"
-	province_rank="city"
+	province_rank="settlement"
 	religion="carthaginian_pantheon"
 	terrain="hills"
 	trade_goods="base_metals"
@@ -623,9 +623,9 @@
 1349=
 {
 	barbarian_power=0
-	civilization_value=22
+	civilization_value=19
 	culture="turdetanian"
-	province_rank="city"
+	province_rank="settlement"
 	religion="animism"
 	terrain="hills"
 	trade_goods="olive"

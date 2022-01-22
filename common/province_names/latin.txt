@@ -1092,6 +1092,7 @@ latin =	{ #Linked to roman starts in line 193
 	1335 = PROV1335_roman # Balsa
 	1339 = PROV1339_roman # Onuba Aestuaria
 	1341 = PROV1341_roman # Tartessus
+	1342 = PROV1342_roman # Hasta Regia
 	1343 = PROV1343_roman # Nabrissa
 	1344 = PROV1344_roman # Gades
 	1347 = PROV1347_roman # Baelo Claudia
