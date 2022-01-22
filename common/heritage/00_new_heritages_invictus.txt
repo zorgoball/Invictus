@@ -386,6 +386,9 @@ punic_heritage = {
 			tag = IOL
 			#tag = GAD
 			tag = IBA
+			tag = LIX
+			tag = KUS
+			tag = RSS
 		}
 	}
 }
