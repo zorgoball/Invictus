@@ -389,6 +389,7 @@ punic_heritage = {
 			tag = LIX
 			tag = KUS
 			tag = RSS
+			tag = THA
 		}
 	}
 }

@@ -466,7 +466,7 @@
 	culture="turdetanian"
 	province_rank="settlement"
 	religion="carthaginian_pantheon"
-	terrain="marsh"
+	terrain="plains"
 	trade_goods="grain"
 	freemen=
 	{

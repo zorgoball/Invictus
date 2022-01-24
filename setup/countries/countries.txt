@@ -758,6 +758,7 @@ LSC = "setup/countries/iberia/lascuta.txt"
 LIX = "setup/countries/africa/lixus.txt"
 KUS = "setup/countries/africa/kuass.txt"
 RSS = "setup/countries/africa/russadir.txt"
+THA = "setup/countries/africa/thamusida.txt"
 
 #East Africa
 MOY = "setup/countries/africa/moya.txt"

@@ -89,7 +89,8 @@
 	barbarian_power=0
 	civilization_value=24
 	culture="carthaginian"
-	province_rank="settlement"
+	port_building=1
+	province_rank="city"
 	religion="berber_religion"
 	terrain="forest"
 	trade_goods="fish"
@@ -117,7 +118,7 @@
 	province_rank="city"
 	religion="carthaginian_pantheon"
 	terrain="forest"
-	trade_goods="fish"
+	trade_goods="earthware"
 	citizen=
 	{
 		amount=3
@@ -140,7 +141,7 @@
 3065=
 {
 	barbarian_power=0
-	civilization_value=24
+	civilization_value=22
 	culture="carthaginian"
 	province_rank="settlement"
 	religion="carthaginian_pantheon"
@@ -164,7 +165,7 @@
 3066=
 {
 	barbarian_power=0
-	civilization_value=24
+	civilization_value=22
 	culture="carthaginian"
 	province_rank="settlement"
 	religion="berber_religion"
@@ -220,9 +221,8 @@
 3068=
 {
 	barbarian_power=0
-	civilization_value=24
+	civilization_value=22
 	culture="carthaginian"
-	port_building=1
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1399,7 +1399,7 @@
 6475=
 {
 	barbarian_power=0
-	civilization_value=0
+	civilization_value=26
 	culture="socossian"
 	province_rank="settlement"
 	religion="berber_religion"
@@ -1630,7 +1630,7 @@
 6491=
 {
 	barbarian_power=0
-	civilization_value=0
+	civilization_value=26
 	culture="socossian"
 	province_rank="settlement"
 	religion="berber_religion"
