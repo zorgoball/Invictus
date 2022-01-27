@@ -94,9 +94,14 @@
 	religion="berber_religion"
 	terrain="forest"
 	trade_goods="fish"
+	citizen=
+	{
+		amount=2
+		religion="carthaginian_pantheon"
+	}
 	freemen=
 	{
-		amount=1
+		amount=3
 		religion="carthaginian_pantheon"
 	}
 	slaves=

@@ -15,6 +15,7 @@
 	1341 = PROV1341_iberia #  Turta
 	1342 = PROV1342_iberia #  Asta
 	1346 = PROV1346_iberia #  Lascuta
+	1347 = PROV1347_iberia #  Bailo
 	1349 = PROV1349_iberia #  Oba
 	1350 = PROV1350_iberia #  Acinippo
 	1355 = PROV1355_iberia #  Spal

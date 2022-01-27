@@ -545,7 +545,7 @@
 	province_rank="settlement"
 	religion="carthaginian_pantheon"
 	terrain="hills"
-	trade_goods="base_metals"
+	trade_goods="grain"
 	citizen=
 	{
 		amount=2

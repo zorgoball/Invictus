@@ -417,7 +417,6 @@ republican_religious_laws = { # Religious Laws
 		NOR = {
 			tag = ROM
 			primary_culture = carthaginian
-			tag = GAD
 		}
 	}
 	
@@ -463,7 +462,6 @@ republican_religious_laws_car = { # Carthage Religious Laws
 	potential = {
 		is_republic = yes
 		primary_culture = carthaginian
-		NOT = { tag = GAD }
 	}
 	committee_of_the_10 = {
 		modifier = {
@@ -491,45 +489,6 @@ republican_religious_laws_car = { # Carthage Religious Laws
 			civic_tech >= 3
 		}
 		modifier = {
-			stability_cost_modifier = -0.33
-		}
-	}
-}
-
-republican_religious_laws_gad = { # Gadir Religious Laws
-	potential = {
-		is_republic = yes
-		tag = GAD
-	}
-	canaanite_traditions = { #Canaanite Traditions
-		modifier = {
-			happiness_for_same_religion_modifier = happiness_small_svalue
-		}
-	}
-	accept_indigenous_cults = { #Accept Indigenous Cults
-		
-		allow = {
-			invention = happiness_for_wrong_group_modifier_inv_1
-		}
-		modifier = {
-			happiness_for_wrong_culture_group_modifier = 0.08
-		}
-	}
-	small_hellenic_syncretism = { #Small Hellenic Syncretism
-		allow = {
-			invention = happiness_for_wrong_group_modifier_inv_2
-		}
-		modifier = {
-			monthly_tyranny = -0.02
-			global_pop_conversion_speed_modifier = 0.1
-		}
-	}
-	state_syncretism = { #State Syncretism
-		allow = {
-			invention = happiness_for_wrong_group_modifier_inv_3
-		}
-		modifier = {
-			global_pop_assimilation_speed_modifier = 0.2
 			stability_cost_modifier = -0.33
 		}
 	}
