@@ -6884,13 +6884,16 @@ country = {
 		}
 		
 		MAU = {
-			government = despotic_monarchy
+			government = tribal_kingdom
 			primary_culture = socossian
 			religion = berber_religion
+			centralization = 30
+			tribal_currency_laws = coin_minting_law
+			tribal_authority_laws = absolute_authority
 			capital = 3067
 
 			own_control_core = 	{
-				3067 3078 3077 3076 3074 3070 3071 3069 3073 3075 3072 3079 3081 3082
+				3067 3078 3077 3076 3074 3071 3069 3073 3075 3072 3079 3081 3082
 				6485 6476 6486
 			}
 			
@@ -8260,7 +8263,7 @@ country = {
 			
 			{ deity = 403 }
 			{ deity = 401 }
-			{ deity = 408 }
+			{ deity = 433 }
 			{ deity = 404 }
 			
 			}
@@ -16241,7 +16244,7 @@ country = {
 			capital = 3063
 			
 			own_control_core = {
-				3063 3066 3068
+				3063 3066 3068 3070
 			}
 		}
 		
