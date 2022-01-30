@@ -6885,12 +6885,12 @@ country = {
 		
 		MAU = {
 			government = tribal_kingdom
-			primary_culture = socossian
-			religion = berber_religion
-			centralization = 30
-			tribal_currency_laws = coin_minting_law
-			tribal_authority_laws = absolute_authority
-			capital = 3067
+            primary_culture = socossian
+            religion = berber_religion
+            centralization = 15
+            tribal_currency_laws = barter_economy_law
+            tribal_authority_laws = absolute_authority
+            capital = 3067
 
 			own_control_core = 	{
 				3067 3078 3077 3076 3074 3071 3069 3073 3075 3072 3079 3081 3082
@@ -7251,8 +7251,12 @@ country = {
 		
 		ATO = { 
 			government = tribal_federation
-			primary_culture = autolalean
-			religion = berber_religion
+            primary_culture = autolalean
+            religion = berber_religion
+            centralization = -30
+            tribal_currency_laws = tribal_religious_freedom_law
+            tribal_authority_laws = right_of_might_law_tribal
+            tribal_authority_laws = follow_the_strong_law
 			
 			capital = 6492
 			
