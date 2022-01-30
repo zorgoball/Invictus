@@ -25,10 +25,7 @@
 			capital_scope = { civilization_value >= 60 }
 			trigger_if = {
 				limit = {
-					OR = {
-						primary_culture = carthaginian
-						primary_culture = phoenician
-					}
+					primary_culture = carthaginian
 				}
 				has_law = merchant_captains
 			}
