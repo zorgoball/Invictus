@@ -7249,6 +7249,30 @@ country = {
 			}
 		} 
 		
+		ATO = { 
+			government = tribal_federation
+			primary_culture = autolalean
+			religion = berber_religion
+			
+			capital = 6492
+			
+			own_control_core = { 
+				6477 6479 6480 6481 6492 7221
+			}
+		}
+		
+		NEC = { 
+			government = tribal_chiefdom
+			primary_culture = nectiberean
+			religion = berber_religion
+			
+			capital = 6302
+			
+			own_control_core = { 
+				6302 6470 6471 6472 6473 6474 6484 6487 6489 #tadla
+			}
+		}
+		
 		GAE = {
 			government = tribal_federation
 			primary_culture = gaetulian

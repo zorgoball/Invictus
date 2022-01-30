@@ -773,6 +773,8 @@ PHZ = "setup/countries/africa/phazanii.txt"
 GIN = "setup/countries/africa/gindanes.txt"
 GYZ = "setup/countries/africa/gyzantes.txt"
 GAE = "setup/countries/africa/gaetulia.txt"
+ATO = "setup/countries/africa/autolales.txt"
+NEC = "setup/countries/africa/nectiberes.txt"
 
 #Seleukid Satraps
 GED = "setup/countries/bactria/gedrosia.txt"

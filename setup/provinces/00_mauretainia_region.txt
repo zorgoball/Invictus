@@ -1315,7 +1315,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="hills"
@@ -1330,7 +1330,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1345,7 +1345,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="plains"
@@ -1360,7 +1360,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="plains"
@@ -1375,7 +1375,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="hills"
@@ -1390,7 +1390,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="plains"
@@ -1439,7 +1439,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="autolalean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1482,7 +1482,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="autolalean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1497,7 +1497,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="autolalean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1512,7 +1512,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="autolalean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="hills"
@@ -1527,7 +1527,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1542,7 +1542,7 @@
 {
 	barbarian_power=0
 	civilization_value=18
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1572,7 +1572,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="hills"
@@ -1591,7 +1591,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="nectiberean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="hills"
@@ -1627,7 +1627,7 @@
 	tribesmen=
 	{
 		amount=1
-		culture="socossian"
+		culture="autolalean"
 		religion="berber_religion"
 	}
 }
@@ -1636,7 +1636,7 @@
 {
 	barbarian_power=0
 	civilization_value=26
-	culture="socossian"
+	culture="autolalean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="plains"
@@ -1651,7 +1651,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="autolalean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="forest"
@@ -1666,7 +1666,7 @@
 {
 	barbarian_power=0
 	civilization_value=0
-	culture="socossian"
+	culture="autolalean"
 	province_rank="settlement"
 	religion="berber_religion"
 	terrain="plains"
